@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumeet K Shukla - Web Resume</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --primary: #0F766E;
+            /* Teal 700 */
+            --primary-dark: #115E59;
+            /* Teal 800 */
+            --primary-light: #CCFBF1;
+            /* Teal 100 */
+
+            --accent: #059669;
+            /* Emerald 600 */
+            --accent-bg: #ECFDF5;
+            /* Emerald 50 */
+
+            --slate-900: #0F172A;
+            --slate-800: #1E293B;
+            --slate-600: #475569;
+            --slate-500: #64748B;
+            --slate-100: #F1F5F9;
+            --slate-50: #F8FAFC;
+
+            --bg-body: #F0F4F8;
+            --bg-card: #FFFFFF;
+
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET & BASE --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--slate-600);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            color: var(--slate-900);
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- LAYOUT GRID --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            /* Sidebar | Main */
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* --- SIDEBAR (STICKY) --- */
+        .sidebar {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            /* Scrollbar Styling */
+            scrollbar-width: thin;
+            scrollbar-color: var(--slate-300) transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: var(--slate-300);
+            border-radius: 20px;
+        }
+
+        /* Sidebar Header (Mobile Only / Top of Sidebar) */
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* Sidebar Sections */
+        .sidebar-section h3 {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--slate-500);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--slate-100);
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        /* Contact List */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--slate-600);
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--slate-50);
+            color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Skills */
+        .skill-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 99px;
+            font-weight: 600;
+            background: var(--slate-100);
+            color: var(--slate-600);
+            transition: 0.2s;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+        }
+
+        .tag.blue {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .tag.green {
+            background: var(--accent-bg);
+            color: var(--accent);
+        }
+
+        /* Info Items (Education/Certs) */
+        .info-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .info-main {
+            font-weight: 700;
+            color: var(--slate-900);
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .info-sub {
+            font-size: 0.85rem;
+            color: var(--slate-500);
+        }
+
+        .info-date {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 0.2rem;
+        }
+
+        /* Publications */
+        .pub-link {
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: var(--slate-600);
+        }
+
+        .pub-link i {
+            margin-top: 4px;
+            color: var(--primary);
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Header Card */
+        .header-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+            border: 1px solid var(--border);
+        }
+
+        .header-card h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--slate-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .header-card .role {
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-summary {
+            font-size: 1rem;
+            color: var(--slate-600);
+            max-width: 90%;
+        }
+
+        .profile-summary strong {
+            color: var(--slate-800);
+            font-weight: 600;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.6rem;
+            top: 0.25rem;
+            width: 16px;
+            height: 16px;
+            background: var(--bg-card);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: 0.2s;
+        }
+
+        .timeline-card:hover {
+            transform: translateX(5px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .job-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-role {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--slate-900);
+        }
+
+        .job-company {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .job-date {
+            background: var(--slate-100);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--slate-600);
+        }
+
+        .job-desc {
+            font-size: 0.95rem;
+            color: var(--slate-600);
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            line-height: 1.3;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-company {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            display: block;
+        }
+
+        .project-body {
+            flex-grow: 1;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-body ul {
+            padding-left: 1rem;
+            list-style-type: disc;
+        }
+
+        .project-body li {
+            margin-bottom: 0.5rem;
+            color: var(--slate-600);
+        }
+
+        .tech-stack {
+            font-family: monospace;
+            font-size: 0.75rem;
+            background: var(--slate-50);
+            color: var(--slate-500);
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+                padding: 1.5rem;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+                max-height: none;
+                order: 2;
+            }
+
+            .main-content {
+                order: 1;
+            }
+
+            .header-card h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-card {
+                padding: 1.5rem;
+            }
+
+            .header-card h1 {
+                font-size: 2rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-dot {
+                left: -1.35rem;
+                width: 12px;
+                height: 12px;
+                top: 0.4rem;
+            }
+        }
+
+        /* Print Hide */
+        @media print {
+            .container {
+                display: block;
+            }
+
+            .sidebar,
+            .action-bar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- === SIDEBAR (Metadata) === -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-avatar">SK</div>
+            </div>
+
+            <!-- Contact -->
+            <div class="sidebar-section">
+                <h3>Contact Info</h3>
+                <div class="contact-list">
+                    <a href="tel:+917406121115" class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <span>+91-740 612 1115</span>
+                    </a>
+                    <a href="mailto:sumeet.k.shukla@gmail.com" class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <span>sumeet.k.shukla@gmail.com</span>
+                    </a>
+                    <a href="https://linkedin.com/in/sumeetshukla" target="_blank" class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                        <span>linkedin.com/in/sumeetshukla</span>
+                    </a>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <span>Uttar Pradesh, India</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="sidebar-section">
+                <h3>Technical Skills</h3>
+
+                <div class="skill-group">
+                    <div class="skill-title"><i class="fas fa-database"></i> Database</div>
+                    <div class="skill-tags">
+                        <span class="tag blue">PostgreSQL</span>
+                        <span class="tag blue">AlloyDB</span>
+                        <span class="tag blue">Snowflake</span>
+                        <span class="tag blue">MySQL</span>
+                        <span class="tag blue">Redis</span>
+                        <span class="tag blue">MongoDB</span>
+                        <span class="tag blue">ClickHouse</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-title"><i class="fas fa-cloud"></i> Cloud & DevOps</div>
+                    <div class="skill-tags">
+                        <span class="tag green">AWS</span>
+                        <span class="tag green">GCP</span>
+                        <span class="tag green">Azure</span>
+                        <span class="tag green">Terraform</span>
+                        <span class="tag green">Kubernetes</span>
+                        <span class="tag green">Ansible</span>
+                        <span class="tag green">Python</span>
+                        <span class="tag green">Helm</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <div class="skill-title"><i class="fas fa-chart-line"></i> Observability</div>
+                    <div class="skill-tags">
+                        <span class="tag">New Relic</span>
+                        <span class="tag">Datadog</span>
+                        <span class="tag">Splunk</span>
+                        <span class="tag">PagerDuty</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="sidebar-section">
+                <h3>Education</h3>
+                <div class="info-item">
+                    <div class="info-main">Master of Computer Applications</div>
+                    <div class="info-sub">Pune University</div>
+                    <div class="info-date">2010 - 2013</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-main">Bachelor of Computer Applications</div>
+                    <div class="info-sub">Annamalai University</div>
+                    <div class="info-date">2008 - 2010</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-main">Diploma (EEE)</div>
+                    <div class="info-sub">Central Polytechnic College</div>
+                    <div class="info-date">2004 - 2007</div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="sidebar-section">
+                <h3>Certifications</h3>
+                <div class="info-item">
+                    <div class="info-main">AWS Database Specialty</div>
+                    <div class="info-sub">AWS</div>
+                    <div class="info-date">2024</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-main">CKA / CKAD (Kubernetes)</div>
+                    <div class="info-sub">CNCF</div>
+                    <div class="info-date">2021</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-main">Terraform Associate</div>
+                    <div class="info-sub">HashiCorp</div>
+                    <div class="info-date">2023</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-main">Full Stack Observability</div>
+                    <div class="info-sub">New Relic</div>
+                    <div class="info-date">2024</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-main">OCI Foundations Associate</div>
+                    <div class="info-sub">Oracle</div>
+                    <div class="info-date">2022</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-main">PostgreSQL 12 Certified</div>
+                    <div class="info-sub">EDB</div>
+                    <div class="info-date">2020</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-main">AWS Solutions Architect</div>
+                    <div class="info-sub">AWS</div>
+                    <div class="info-date">2019</div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="sidebar-section">
+                <h3>Achievements</h3>
+                <div class="contact-list">
+                    <div class="contact-item"><i class="fas fa-trophy" style="color:var(--accent)"></i> Recipient of
+                        "Extra Miles" Award</div>
+                    <div class="contact-item"><i class="fas fa-chart-line" style="color:var(--accent)"></i> Saved $MN+
+                        in Infra Costs</div>
+                    <div class="contact-item"><i class="fas fa-building" style="color:var(--accent)"></i> Ran IT
+                        Services Startup (2+ Yrs)</div>
+                    <div class="contact-item"><i class="fas fa-star" style="color:var(--accent)"></i> 5th Position in
+                        State JEE</div>
+                    <div class="contact-item"><i class="fas fa-file-powerpoint" style="color:var(--accent)"></i>
+                        Presented Paper on HVDC</div>
+                </div>
+            </div>
+
+            <!-- Publications -->
+            <div class="sidebar-section">
+                <h3>Publications</h3>
+                <div class="contact-list">
+                    <a href="#" class="pub-link"><i class="fas fa-book-open"></i> AWS Aurora RDS load balancing with
+                        pgPool-II</a>
+                    <a href="#" class="pub-link"><i class="fas fa-code-branch"></i> Terraform AWS RDS Cluster:
+                        Open-Source Contribution</a>
+                    <a href="#" class="pub-link"><i class="fas fa-book-open"></i> Normalization in OLTP vs. OLAP</a>
+                    <a href="#" class="pub-link"><i class="fas fa-book-open"></i> PostgreSQL Architecture Deep Dive</a>
+                    <a href="#" class="pub-link"><i class="fas fa-file-alt"></i> pgBadger for PostgreSQL on Linux</a>
+                </div>
+            </div>
+
+            <!-- Personal -->
+            <div class="sidebar-section">
+                <h3>Personal</h3>
+                <div class="contact-list">
+                    <div class="contact-item"><strong>Nationality:</strong> Indian</div>
+                    <div class="contact-item"><strong>Languages:</strong> English, Hindi, Tamil</div>
+                    <div class="contact-item"><strong>Status:</strong> Married</div>
+                    <div class="contact-item"><strong>DOB:</strong> 04 Nov 1988</div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- === MAIN CONTENT === -->
+        <main class="main-content">
+
+            <!-- Hero Card -->
+            <header class="header-card">
+                <h1>Sumeet K Shukla</h1>
+                <div class="role">Senior Database Reliability Engineer & Cloud Architect</div>
+                <div class="profile-summary">
+                    <p>
+                        <strong>Senior DBRE & Cloud Architect</strong> with over 15 years of deep technical expertise in
+                        managing high-volume, mission-critical database ecosystems. Proven track record in architecting
+                        scalable <strong>Multi-Cloud solutions</strong> (AWS, GCP, Azure) and implementing robust
+                        <strong>Site Reliability Engineering (SRE)</strong> practices.
+                    </p>
+                    <br>
+                    <p>
+                        Specialized in <strong>PostgreSQL, AlloyDB, and NoSQL</strong> technologies with a focus on
+                        automation via <strong>Terraform</strong> and CI/CD pipelines. Expert in reducing operational
+                        toil, optimizing costs, and driving 99.99% availability through data-driven observability.
+                    </p>
+                </div>
+            </header>
+
+            <!-- Experience Timeline -->
+            <section>
+                <div class="section-title">Professional Experience</div>
+                <div class="timeline">
+
+                    <!-- Inspectorio -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="job-head">
+                                <div>
+                                    <div class="job-role">Senior DBRE</div>
+                                    <div class="job-company">Inspectorio (Remote)</div>
+                                </div>
+                                <div class="job-date">Mar 2025 – Present</div>
+                            </div>
+                            <div class="job-desc">Driving reliability for 25+ cloud DB instances; improving latency by
+                                90% via SQL optimization.</div>
+                        </div>
+                    </div>
+
+                    <!-- Hexaware -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="job-head">
+                                <div>
+                                    <div class="job-role">Lead DBRE</div>
+                                    <div class="job-company">Hexaware Technologies</div>
+                                </div>
+                                <div class="job-date">Feb 2024 – Mar 2025</div>
+                            </div>
+                            <div class="job-desc">Led DataOps for Carlyle Project; automated schema migrations and
+                                conducted PG training.</div>
+                        </div>
+                    </div>
+
+                    <!-- Talabat -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="job-head">
+                                <div>
+                                    <div class="job-role">Senior DBA / SRE</div>
+                                    <div class="job-company">Talabat - Delivery Hero (Dubai)</div>
+                                </div>
+                                <div class="job-date">Mar 2019 – Feb 2022</div>
+                            </div>
+                            <div class="job-desc">Migrated SQL Server to PostgreSQL (200% Perf Boost) and managed
+                                massive AWS RDS fleets.</div>
+                        </div>
+                    </div>
+
+                    <!-- Optum -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="job-head">
+                                <div>
+                                    <div class="job-role">Lead DBA</div>
+                                    <div class="job-company">Optum (UHG)</div>
+                                </div>
+                                <div class="job-date">Apr 2017 – Mar 2019</div>
+                            </div>
+                            <div class="job-desc">Improved infrastructure performance by 150% and led HA clustering for
+                                healthcare platforms.</div>
+                        </div>
+                    </div>
+
+                    <!-- Cisco -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="job-head">
+                                <div>
+                                    <div class="job-role">PostgreSQL DBA</div>
+                                    <div class="job-company">Aricent (Cisco Systems)</div>
+                                </div>
+                                <div class="job-date">Aug 2016 – Apr 2017</div>
+                            </div>
+                            <div class="job-desc">Managed PostgreSQL replication, HA setup, and Docker containerization
+                                for Cisco's Cloud EMaaS.</div>
+                        </div>
+                    </div>
+
+                    <!-- ThoughtBirds -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="job-head">
+                                <div>
+                                    <div class="job-role">Co-Founder Director</div>
+                                    <div class="job-company">ThoughtBirds Technologies</div>
+                                </div>
+                                <div class="job-date">Nov 2013 – July 2016</div>
+                            </div>
+                            <div class="job-desc">Founded IT services startup; managed full-stack delivery and early Big
+                                Data initiatives (Hadoop/AWS).</div>
+                        </div>
+                    </div>
+
+                    <!-- Xento -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="job-head">
+                                <div>
+                                    <div class="job-role">DBA</div>
+                                    <div class="job-company">Xento Systems</div>
+                                </div>
+                                <div class="job-date">Oct 2012 – Oct 2013</div>
+                            </div>
+                            <div class="job-desc">Provided production support for real estate apps; optimized SQL
+                                queries and managed zero-downtime replication.</div>
+                        </div>
+                    </div>
+
+                    <!-- TCS -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="job-head">
+                                <div>
+                                    <div class="job-role">Systems Engineer</div>
+                                    <div class="job-company">TCS (The Hartford)</div>
+                                </div>
+                                <div class="job-date">Nov 2007 – Feb 2010</div>
+                            </div>
+                            <div class="job-desc">Production support for The Hartford Insurance; streamlined complex
+                                financial reporting processes.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Project Grid -->
+            <section>
+                <div class="section-title">Detailed Project Experience</div>
+                <div class="project-grid">
+
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Multi-Cloud Reliability Platform</div>
+                            <div class="project-company">Inspectorio (Remote)</div>
+                        </div>
+                        <div class="project-body">
+                            <ul>
+                                <li>Own reliability for 25+ production instances (PostgreSQL, AlloyDB, ClickHouse).</li>
+                                <li>Drive 90% latency improvements via SQL rewrites.</li>
+                                <li>Reduced manual DBA effort by 60%+ via automation.</li>
+                                <li>Improved MTTR by ~35% with SLO-driven ops.</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">PostgreSQL, AlloyDB, Kafka, ClickHouse, GCP, Terraform</div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Carlyle DataOps Transformation</div>
+                            <div class="project-company">Hexaware Technologies</div>
+                        </div>
+                        <div class="project-body">
+                            <ul>
+                                <li>Architected Snowflake & SnapLogic infra on AWS using Terraform.</li>
+                                <li>Implemented automated schema migrations using FlywayDB.</li>
+                                <li>Conducted workshops on PostgreSQL Administration.</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">Snowflake, SnapLogic, Terraform, Azure DevOps, FlywayDB</div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Global Delivery Migration</div>
+                            <div class="project-company">Talabat - Delivery Hero</div>
+                        </div>
+                        <div class="project-body">
+                            <ul>
+                                <li>Migrated SQL Server to PostgreSQL on AWS (200% Perf Boost).</li>
+                                <li>Implemented CI/CD pipelines with FlywayDB & CircleCI.</li>
+                                <li>Automated tasks via Kubernetes & Helm Charts.</li>
+                                <li>Ensured DR restoration in < 2 hours.</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">AWS Aurora, K8s, Helm, Terraform, OpsGenie, FlywayDB</div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Healthcare HA Clusters</div>
+                            <div class="project-company">Optum (UHG)</div>
+                        </div>
+                        <div class="project-body">
+                            <ul>
+                                <li>Improved infra performance by 150% via tuning.</li>
+                                <li>Designed HA & DR sites for resilience.</li>
+                                <li>Automated ops with Shell scripts & Nagios.</li>
+                                <li>Managed MongoDB, SQL Server, & Oracle.</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">PostgreSQL, MySQL, MongoDB, Oracle, Splunk, New Relic</div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Energy Management SaaS</div>
+                            <div class="project-company">Cisco Systems</div>
+                        </div>
+                        <div class="project-body">
+                            <ul>
+                                <li>Managed PostgreSQL replication & HA on Cisco Cloud.</li>
+                                <li>Implemented pgBadger, pgAdmin, & pgPool-II.</li>
+                                <li>Deployed database services using Docker.</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">PostgreSQL, MySQL, Docker, Nagios, AWS Cloud</div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">IT Services Startup</div>
+                            <div class="project-company">ThoughtBirds</div>
+                        </div>
+                        <div class="project-body">
+                            <ul>
+                                <li>Managed full-stack delivery using Agile Scrum.</li>
+                                <li>Architected PostgreSQL/MySQL database servers.</li>
+                                <li>Hands-on with Hadoop, Hive, Pig, & HBase.</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">PostgreSQL, MySQL, AWS, Hadoop, PHP, Magento</div>
+                    </div>
+
+                    <!-- Project 7 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Operations Support</div>
+                            <div class="project-company">Xento Systems</div>
+                        </div>
+                        <div class="project-body">
+                            <ul>
+                                <li>Monitored PostgreSQL across Dev/Stage/Prod.</li>
+                                <li>Resolved query bottlenecks on live systems.</li>
+                                <li>Automated maintenance with Shell scripts.</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">PostgreSQL, Shell, Nagios, PHP, Oracle 11g</div>
+                    </div>
+
+                    <!-- Project 8 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Financial Reporting</div>
+                            <div class="project-company">TCS (The Hartford)</div>
+                        </div>
+                        <div class="project-body">
+                            <ul>
+                                <li>Developed reports using Business Objects & Crystal.</li>
+                                <li>Reduced Monthly Reporting time by 50%.</li>
+                                <li>Provided KT to new team members.</li>
+                            </ul>
+                        </div>
+                        <div class="tech-stack">Business Objects, Crystal Reports, Oracle, Mainframes</div>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
