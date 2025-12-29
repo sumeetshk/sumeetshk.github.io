@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumeet K Shukla - Senior Database Reliability Engineer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Palette - Teal & Slate (V2 Aesthetic) */
+            --primary: #0F766E;
+            /* Teal 700 */
+            --primary-dark: #134E4A;
+            /* Teal 800 */
+            --primary-light: #CCFBF1;
+            /* Teal 100 */
+            --accent: #059669;
+            /* Emerald 600 */
+            --accent-bg: #D1FAE5;
+            /* Emerald 100 */
+
+            --slate-900: #0F172A;
+            --slate-800: #1E293B;
+            --slate-600: #475569;
+            --slate-500: #64748B;
+            --slate-400: #94A3B8;
+            --slate-200: #E2E8F0;
+            --slate-100: #F1F5F9;
+            --slate-50: #F8FAFC;
+            --white: #FFFFFF;
+
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            --radius-md: 12px;
+            --radius-lg: 16px;
+
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--slate-50);
+            color: var(--slate-600);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            color: var(--slate-900);
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeinUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes growLine {
+            from {
+                height: 0;
+            }
+
+            to {
+                height: 100%;
+            }
+        }
+
+        .animate-in {
+            animation: fadeinUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, var(--slate-50) 100%);
+            padding: 5rem 0 4rem;
+            border-bottom: 1px solid var(--slate-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, var(--slate-900), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-role {
+            font-size: 1.5rem;
+            color: var(--slate-500);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-bio {
+            font-size: 1.2rem;
+            color: var(--slate-600);
+            max-width: 800px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+        }
+
+        .hero-bio strong {
+            color: var(--slate-800);
+        }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            border: 1px solid var(--slate-200);
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            font-size: 1rem;
+            color: var(--slate-600);
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-btn.primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .contact-btn.primary:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        /* --- HIGHLIGHTS (BIG STATS) --- */
+        .highlights {
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            border: 1px solid var(--slate-200);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .stat-number {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--slate-900), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--slate-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            color: var(--slate-500);
+        }
+
+        /* --- SECTION UTILS --- */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        /* --- SKILLS (INFOGRAPHIC) --- */
+        .skill-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--slate-200);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--slate-100);
+        }
+
+        .skill-header i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* Progress Bars */
+        .skill-bar-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .sb-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .sb-track {
+            height: 8px;
+            background: var(--slate-100);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .sb-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            width: 0;
+            animation: fillBar 1.5s ease-out forwards;
+        }
+
+        @keyframes fillBar {
+            to {
+                width: var(--w);
+            }
+        }
+
+        /* Icon Cloud */
+        .icon-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        .ic-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-align: center;
+            width: 80px;
+        }
+
+        .ic-icon {
+            font-size: 2rem;
+            color: var(--slate-400);
+            transition: var(--transition);
+        }
+
+        .ic-item:hover .ic-icon {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .ic-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--slate-600);
+        }
+
+        /* --- EXPERIENCE (VISUAL TIMELINE) --- */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--slate-200);
+            transform: translateX(-50%);
+        }
+
+        .timeline-node {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .tn-icon {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 48px;
+            height: 48px;
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--primary);
+            box-shadow: 0 0 0 8px var(--slate-50);
+        }
+
+        .tn-content {
+            width: 45%;
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--slate-200);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .tn-content:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-node:nth-child(odd) .tn-content {
+            margin-left: auto;
+            /* Right side */
+        }
+
+        .timeline-node:nth-child(even) .tn-content {
+            margin-right: auto;
+            /* Left side */
+            text-align: right;
+        }
+
+        /* Arrows */
+        .tn-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .timeline-node:nth-child(odd) .tn-content::after {
+            left: -10px;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--white) transparent transparent;
+        }
+
+        .timeline-node:nth-child(even) .tn-content::after {
+            right: -10px;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--white);
+        }
+
+        .tn-role {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--slate-900);
+        }
+
+        .tn-company {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tn-date {
+            position: absolute;
+            top: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--slate-500);
+            width: 150px;
+        }
+
+        /* Date placement */
+        .timeline-node:nth-child(odd) .tn-date {
+            left: -180px;
+            text-align: right;
+        }
+
+        .timeline-node:nth-child(even) .tn-date {
+            right: -180px;
+            text-align: left;
+        }
+
+        .tn-desc ul {
+            margin-top: 1rem;
+            padding: 0;
+            text-align: left;
+            /* Keep bullets aligned left always */
+        }
+
+        .tn-desc li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .tn-desc li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- PROJECTS --- */
+        .project-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--slate-200);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .p-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .p-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .p-stack {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--slate-100);
+            font-size: 0.85rem;
+            color: var(--slate-500);
+            font-family: monospace;
+        }
+
+        /* --- BADGES (CERTS) --- */
+        .badge-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .badge {
+            background: var(--white);
+            padding: 0.75rem 1.25rem;
+            border-radius: 99px;
+            border: 2px solid var(--slate-200);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            color: var(--slate-700);
+            transition: var(--transition);
+        }
+
+        .badge:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .badge i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            /* Stat grid 2 col on mobile */
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Timeline Reset for Mobile */
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-node {
+                margin-bottom: 3rem;
+            }
+
+            .tn-icon {
+                left: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .tn-content {
+                width: auto;
+                margin-left: 50px !important;
+                margin-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .tn-content::after {
+                left: -10px !important;
+                border-width: 10px 10px 10px 0 !important;
+                border-color: transparent var(--white) transparent transparent !important;
+            }
+
+            .tn-date {
+                position: relative;
+                width: auto;
+                left: 0 !important;
+                right: 0 !important;
+                text-align: left !important;
+                margin-bottom: 0.5rem;
+                display: block;
+                top: 0;
+            }
+
+            .tn-desc ul {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <header class="hero animate-in">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sumeet K Shukla</h1>
+                <div class="hero-role">
+                    <i class="fas fa-terminal" style="color: var(--primary);"></i> Senior Database Reliability Engineer
+                    & Cloud Architect
+                </div>
+
+                <p class="hero-bio">
+                    <strong>15+ years of Architecting Scale.</strong><br>
+                    Specializing in mission-critical <strong>PostgreSQL, AlloyDB, and NoSQL</strong> ecosystems on AWS &
+                    GCP.
+                    I build 99.99% available platforms using <strong>Terraform, Kubernetes, and SRE principals</strong>.
+                </p>
+
+                <div class="contact-bar">
+                    <a href="mailto:sumeet.k.shukla@gmail.com" class="contact-btn primary">
+                        <i class="fas fa-paper-plane"></i> Contact Me
+                    </a>
+                    <a href="https://linkedin.com/in/sumeetshukla" target="_blank" class="contact-btn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="tel:+917406121115" class="contact-btn">
+                        <i class="fas fa-phone-alt"></i> +91-740 612 1115
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- BIG STATS -->
+        <section class="highlights animate-in delay-1">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number">25+</span>
+                    <div class="stat-label">Cloud Instances</div>
+                    <div class="stat-desc">Managed across AWS, GCP & Azure</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">99.9%</span>
+                    <div class="stat-label">Uptime Delivered</div>
+                    <div class="stat-desc">Via HA Architectures & DR Strategies</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">60%</span>
+                    <div class="stat-label">Toil Reduced</div>
+                    <div class="stat-desc">Through Python Automation & IaC</div>
+                </div>
+                <!-- Optional 4th stat if needed -->
+            </div>
+        </section>
+
+        <!-- VISUAL SKILLS -->
+        <section class="section animate-in delay-2">
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p style="color: var(--slate-500);">Core competencies and technology stack</p>
+            </div>
+
+            <div class="grid-2-col">
+                <!-- Primary Skills (Bars) -->
+                <div class="skill-box">
+                    <div class="skill-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Core DB Platforms</h3>
+                    </div>
+
+                    <div class="skill-bar-item">
+                        <div class="sb-info"><span>PostgreSQL / AlloyDB</span><span>95%</span></div>
+                        <div class="sb-track">
+                            <div class="sb-fill" style="--w: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="sb-info"><span>AWS RDS / Aurora</span><span>90%</span></div>
+                        <div class="sb-track">
+                            <div class="sb-fill" style="--w: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="sb-info"><span>NoSQL (Mongo/Cassandra)</span><span>80%</span></div>
+                        <div class="sb-track">
+                            <div class="sb-fill" style="--w: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="sb-info"><span>Snowflake / Redshift</span><span>75%</span></div>
+                        <div class="sb-track">
+                            <div class="sb-fill" style="--w: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Skills (Bars) -->
+                <div class="skill-box">
+                    <div class="skill-header">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud & DevOps</h3>
+                    </div>
+
+                    <div class="skill-bar-item">
+                        <div class="sb-info"><span>Terraform (IaC)</span><span>90%</span></div>
+                        <div class="sb-track">
+                            <div class="sb-fill" style="--w: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="sb-info"><span>Kubernetes / Helm</span><span>85%</span></div>
+                        <div class="sb-track">
+                            <div class="sb-fill" style="--w: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="sb-info"><span>AWS / GCP Architecture</span><span>85%</span></div>
+                        <div class="sb-track">
+                            <div class="sb-fill" style="--w: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="sb-info"><span>Python Automation</span><span>80%</span></div>
+                        <div class="sb-track">
+                            <div class="sb-fill" style="--w: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Skills (Icons) -->
+            <div class="skill-box" style="margin-top: 2rem;">
+                <div class="skill-header">
+                    <i class="fas fa-tools"></i>
+                    <h3>Tools & Ecosystem</h3>
+                </div>
+                <div class="icon-cloud">
+                    <div class="ic-item"><i class="fab fa-aws ic-icon"></i>
+                        <div class="ic-name">AWS</div>
+                    </div>
+                    <div class="ic-item"><i class="fab fa-google ic-icon"></i>
+                        <div class="ic-name">GCP</div>
+                    </div>
+                    <div class="ic-item"><i class="fab fa-docker ic-icon"></i>
+                        <div class="ic-name">Docker</div>
+                    </div>
+                    <div class="ic-item"><i class="fab fa-python ic-icon"></i>
+                        <div class="ic-name">Python</div>
+                    </div>
+                    <div class="ic-item"><i class="fab fa-linux ic-icon"></i>
+                        <div class="ic-name">Linux</div>
+                    </div>
+                    <div class="ic-item"><i class="fas fa-code-branch ic-icon"></i>
+                        <div class="ic-name">Git</div>
+                    </div>
+                    <div class="ic-item"><i class="fas fa-chart-line ic-icon"></i>
+                        <div class="ic-name">Datadog</div>
+                    </div>
+                    <div class="ic-item"><i class="fas fa-server ic-icon"></i>
+                        <div class="ic-name">Redis</div>
+                    </div>
+                    <div class="ic-item"><i class="fas fa-network-wired ic-icon"></i>
+                        <div class="ic-name">Kafka</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISUAL TIMELINE -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Career Journey</h2>
+            </div>
+
+            <div class="timeline">
+
+                <!-- Role 1 -->
+                <div class="timeline-node">
+                    <div class="tn-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="tn-date">Mar 2025 - Present</div>
+                    <div class="tn-content">
+                        <div class="tn-role">Senior DBRE</div>
+                        <div class="tn-company">Inspectorio (Remote)</div>
+                        <div class="tn-desc">
+                            <ul>
+                                <li>Ownership of reliability for <strong>25+ production instances</strong> (PostgreSQL,
+                                    AlloyDB, ClickHouse).</li>
+                                <li>Drive <strong>90% latency improvements</strong> via deep SQL optimization and
+                                    architectural tuning.</li>
+                                <li>Reduced manual DBA effort by <strong>60%+</strong> via Python-based automation.</li>
+                                <li>Improved MTTR by ~35% with SLO-driven ops and New Relic integration.</li>
+                            </ul>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">PostgreSQL</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">AlloyDB</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">GCP</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">Terraform</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="timeline-node">
+                    <div class="tn-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="tn-date">Feb 2024 - Mar 2025</div>
+                    <div class="tn-content">
+                        <div class="tn-role">Lead DBRE</div>
+                        <div class="tn-company">Hexaware Technologies</div>
+                        <div class="tn-desc">
+                            <ul>
+                                <li>Led DataOps for Carlyle Project; architected <strong>Snowflake & SnapLogic</strong>
+                                    infra on AWS.</li>
+                                <li>Implemented automated schema migrations using <strong>FlywayDB</strong> and Azure
+                                    DevOps.</li>
+                                <li>Conducted advanced PostgreSQL training workshops for engineering teams.</li>
+                            </ul>
+                            <div
+                                style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end;">
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">Snowflake</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">Azure</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">FlywayDB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="timeline-node">
+                    <div class="tn-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="tn-date">Mar 2019 - Feb 2022</div>
+                    <div class="tn-content">
+                        <div class="tn-role">Senior DBA / SRE</div>
+                        <div class="tn-company">Talabat - Delivery Hero (Dubai)</div>
+                        <div class="tn-desc">
+                            <ul>
+                                <li>Migrated SQL Server to PostgreSQL on AWS (Achieved <strong>200% Performance
+                                        Boost</strong>).</li>
+                                <li>Managed massive fleet of AWS RDS instances using Terraform key modules.</li>
+                                <li>Ensured DR restoration in <strong>
+                                        < 2 hours</strong> via automated recovery pipelines.</li>
+                            </ul>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">AWS
+                                    Aurora</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">Kubernetes</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">Terraform</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="timeline-node">
+                    <div class="tn-icon"><i class="fas fa-heartbeat"></i></div>
+                    <div class="tn-date">Apr 2017 - Mar 2019</div>
+                    <div class="tn-content">
+                        <div class="tn-role">Lead DBA</div>
+                        <div class="tn-company">Optum (UHG)</div>
+                        <div class="tn-desc">
+                            <ul>
+                                <li>Improved infrastructure performance by <strong>150%</strong> via tuning and
+                                    indexing.</li>
+                                <li>Led HA clustering initiatives for critical patient data platforms.</li>
+                                <li>Managed mixed workloads: PostgreSQL, MongoDB, and Oracle.</li>
+                            </ul>
+                            <div
+                                style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end;">
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">PostgreSQL</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">MongoDB</span>
+                                <span class="badge"
+                                    style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border: 1px solid var(--slate-200);">Oracle</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Previous -->
+                <div class="timeline-node" style="opacity: 0.7;">
+                    <div class="tn-icon"
+                        style="background:var(--slate-100); color:var(--slate-500); border-color:var(--slate-300);"><i
+                            class="fas fa-history"></i></div>
+                    <div class="tn-date">2007 - 2017</div>
+                    <div class="tn-content">
+                        <div class="tn-role">Previous Experience</div>
+                        <div class="tn-desc">
+                            PostgreSQL DBA @ <strong>Aricent</strong> <br>
+                            Co-Founder @ <strong>ThoughtBirds</strong> <br>
+                            Systems Engineer @ <strong>TCS</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CREDENTIALS (BADGES) -->
+        <section class="section" style="background: var(--slate-50); margin-bottom:0; padding-bottom: 2rem;">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+            </div>
+
+            <div class="badge-grid">
+                <div class="badge"><i class="fab fa-aws"></i> AWS Database Specialty</div>
+                <div class="badge"><i class="fas fa-chart-bar"></i> New Relic Full Stack</div>
+                <div class="badge"><i class="fas fa-code"></i> Terraform Associate</div>
+                <div class="badge"><i class="fas fa-dharmachakra"></i> CKA / CKAD (Kubernetes)</div>
+                <div class="badge"><i class="fas fa-database"></i> PostgreSQL 12 Certified</div>
+                <div class="badge"><i class="fab fa-aws"></i> AWS Solutions Architect</div>
+                <div class="badge"><i class="fab fa-oracle"></i> OCI Foundations</div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/sumeetshukla" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:sumeet.k.shukla@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2025 Sumeet K Shukla. Built High-Scale. 🚀</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
