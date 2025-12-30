@@ -1,0 +1,71 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Optional lock files (uncomment if you want to ignore them)
+# package-lock.json
+# yarn.lock
+
+# Build / output
+dist/
+build/
+out/
+public/build/
+.cache/
+.parcel-cache/
+.sass-cache/
+.vite/
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+.venv/
+
+# VS Code
+.vscode/
+.history/
+
+# JetBrains
+.idea/
+*.iml
+
+# Editors and temporary files
+*~
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS generated files
+Icon?
+
+# Misc
+coverage/
+coverage-report/
+
+# Ignore macOS resource forks
+.DS_Store
+
+# End of file
