@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumeet K Shukla - Senior DBRE & Cloud Architect</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Premium Teal & Slate Palette */
+            --primary: #0F766E;
+            --primary-dark: #134E4A;
+            --primary-light: #CCFBF1;
+            --accent: #059669;
+            --accent-light: #D1FAE5;
+
+            --slate-900: #0F172A;
+            --slate-800: #1E293B;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748B;
+            --slate-400: #94A3B8;
+            --slate-200: #E2E8F0;
+            --slate-100: #F1F5F9;
+            --slate-50: #F8FAFC;
+            --white: #FFFFFF;
+
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--slate-50);
+            color: var(--slate-600);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--slate-900);
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ============ NAVIGATION ============ */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--slate-200);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--slate-600);
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            padding: 6rem 0 3rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--slate-50) 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, var(--slate-900), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--slate-600);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-bio {
+            font-size: 1.1rem;
+            color: var(--slate-700);
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .cta-btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--slate-600);
+            border: 2px solid var(--slate-200);
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* ============ STATS SECTION ============ */
+        .stats {
+            margin: -2rem auto 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--slate-200);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            color: var(--slate-500);
+        }
+
+        /* ============ SECTIONS ============ */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--slate-500);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        /* ============ SKILLS SECTION ============ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-box {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--slate-100);
+        }
+
+        .skill-header i {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .skill-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: var(--slate-100);
+            color: var(--slate-700);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid var(--slate-200);
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* ============ EXPERIENCE (TIMELINE) ============ */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--slate-200);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px dashed var(--slate-200);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -12px;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .job-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .job-card:hover {
+            transform: translateX(10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .job-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--slate-900);
+        }
+
+        .job-company {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .job-date {
+            background: var(--slate-100);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--slate-600);
+        }
+
+        .job-desc {
+            color: var(--slate-600);
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .job-skill {
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        /* ============ PROJECTS GRID ============ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-company {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: var(--slate-600);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--slate-100);
+            font-size: 0.75rem;
+            font-family: monospace;
+            color: var(--slate-500);
+        }
+
+        /* ============ CERTIFICATIONS ============ */
+        .cert-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .cert-badge {
+            background: white;
+            border: 2px solid var(--slate-200);
+            padding: 0.75rem 1.5rem;
+            border-radius: 99px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .cert-badge:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .cert-badge i {
+            font-size: 1rem;
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--slate-900);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--slate-300);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .social-icons a {
+            color: var(--slate-400);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--slate-700);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--slate-400);
+        }
+
+        /* ============ ANIMATIONS ============ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* ============ PRINT ============ */
+        @media print {
+            nav, footer {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">SK</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#certifications">Certs</a>
+                <a href="mailto:sumeet.k.shukla@gmail.com" class="cta-button">
+                    <i class="fas fa-paper-plane"></i> Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero animate-in">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sumeet K Shukla</h1>
+                <div class="hero-subtitle">
+                    <i class="fas fa-terminal"></i> Senior DBRE & Cloud Architect
+                </div>
+                <p class="hero-bio">
+                    <strong>15+ years architecting scale.</strong> Specializing in mission-critical <strong>PostgreSQL, AlloyDB, and NoSQL</strong> ecosystems on AWS & GCP. I build <strong>99.99% available platforms</strong> using Terraform, Kubernetes, and SRE principles. Expert in reducing toil, optimizing costs, and driving operational excellence.
+                </p>
+                <div class="cta-btn-group">
+                    <a href="mailto:sumeet.k.shukla@gmail.com" class="cta-button">
+                        <i class="fas fa-envelope"></i> Email Me
+                    </a>
+                    <a href="tel:+917406121115" class="btn-secondary">
+                        <i class="fas fa-phone"></i> +91-740 612 1115
+                    </a>
+                    <a href="https://linkedin.com/in/sumeetshukla" target="_blank" class="btn-secondary">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <div class="container stats">
+        <div class="stats-grid animate-in delay-1">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-database"></i></div>
+                <span class="stat-number">25+</span>
+                <div class="stat-label">Cloud Instances</div>
+                <div class="stat-desc">Managed across AWS, GCP & Azure</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                <span class="stat-number">99.9%</span>
+                <div class="stat-label">Uptime Delivered</div>
+                <div class="stat-desc">Via HA architectures & DR strategies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                <span class="stat-number">90%</span>
+                <div class="stat-label">Latency Improvements</div>
+                <div class="stat-desc">Through SQL optimization</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-cogs"></i></div>
+                <span class="stat-number">60%+</span>
+                <div class="stat-label">Toil Reduced</div>
+                <div class="stat-desc">Via automation & IaC</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Professional Summary & Background</p>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: var(--slate-700);">
+                    I'm a <strong>Senior Database Reliability Engineer</strong> with deep expertise in designing and operating <strong>high-scale, mission-critical database systems</strong>. Throughout my 15+ year career, I've architected multi-cloud solutions, led infrastructure transformations, and driven operational excellence across AWS, GCP, and Azure.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--slate-700);">
+                    My passion lies in <strong>SRE principles</strong>, <strong>Infrastructure as Code</strong> with Terraform, and building <strong>observable, resilient systems</strong> that scale effortlessly. Whether optimizing query performance by 90%, reducing manual DBA work by 60%, or architecting disaster recovery with sub-2-hour RTOs, I thrive on solving complex technical challenges.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section id="skills" style="background: var(--slate-50);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">Core competencies across databases, cloud, and DevOps</p>
+            </div>
+
+            <div class="skills-grid animate-in delay-1">
+                <!-- Databases -->
+                <div class="skill-box">
+                    <div class="skill-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Database Platforms</h3>
+                    </div>
+                    <div class="skill-items">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">AlloyDB</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">AWS Aurora</span>
+                        <span class="skill-tag">Snowflake</span>
+                        <span class="skill-tag">Redshift</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Cassandra</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">ClickHouse</span>
+                    </div>
+                </div>
+
+                <!-- Cloud & DevOps -->
+                <div class="skill-box">
+                    <div class="skill-header">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud & DevOps</h3>
+                    </div>
+                    <div class="skill-items">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Helm</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Ansible</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+
+                <!-- Languages & Tools -->
+                <div class="skill-box">
+                    <div class="skill-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>Languages & Tools</h3>
+                    </div>
+                    <div class="skill-items">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Bash/Shell</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Kafka</span>
+                        <span class="skill-tag">FlywayDB</span>
+                        <span class="skill-tag">pgAdmin</span>
+                        <span class="skill-tag">pgBadger</span>
+                        <span class="skill-tag">pgPool-II</span>
+                    </div>
+                </div>
+
+                <!-- Observability -->
+                <div class="skill-box">
+                    <div class="skill-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Observability & Monitoring</h3>
+                    </div>
+                    <div class="skill-items">
+                        <span class="skill-tag">New Relic</span>
+                        <span class="skill-tag">Datadog</span>
+                        <span class="skill-tag">Splunk</span>
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">PagerDuty</span>
+                        <span class="skill-tag">OpsGenie</span>
+                        <span class="skill-tag">Nagios</span>
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag">InfluxDB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EXPERIENCE ========== -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Career Journey</h2>
+                <p class="section-subtitle">Professional experience across leading organizations</p>
+            </div>
+
+            <div class="timeline animate-in delay-1">
+                <!-- Role 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Senior DBRE</div>
+                                <div class="job-company">Inspectorio (Remote)</div>
+                            </div>
+                            <span class="job-date">Mar 2025 – Present</span>
+                        </div>
+                        <p class="job-desc">Own reliability, performance, and scalability of 25+ production DB instances. Delivered 90% latency improvements via SQL optimization, reduced manual DBA effort by 60%+ through automation, and improved MTTR by 35% with SLO-driven operations.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">PostgreSQL</span>
+                            <span class="job-skill">AlloyDB</span>
+                            <span class="job-skill">GCP</span>
+                            <span class="job-skill">Terraform</span>
+                            <span class="job-skill">Kafka</span>
+                            <span class="job-skill">ClickHouse</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Lead DBRE</div>
+                                <div class="job-company">Hexaware Technologies</div>
+                            </div>
+                            <span class="job-date">Feb 2024 – Mar 2025</span>
+                        </div>
+                        <p class="job-desc">Led DataOps for Carlyle Group's private equity platform. Architected Snowflake & SnapLogic infrastructure on AWS using Terraform. Implemented automated schema migrations with FlywayDB and conducted comprehensive PostgreSQL training for engineering teams.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">Snowflake</span>
+                            <span class="job-skill">FlywayDB</span>
+                            <span class="job-skill">Azure</span>
+                            <span class="job-skill">Terraform</span>
+                            <span class="job-skill">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Senior DBA / SRE</div>
+                                <div class="job-company">Talabat - Delivery Hero (Dubai)</div>
+                            </div>
+                            <span class="job-date">Mar 2019 – Feb 2022</span>
+                        </div>
+                        <p class="job-desc">Migrated SQL Server to PostgreSQL on AWS (achieving 200% performance boost). Managed massive RDS fleets using Terraform, ensured DR restoration in <2 hours, and implemented CI/CD pipelines with FlywayDB and automated recovery strategies.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">AWS Aurora</span>
+                            <span class="job-skill">Kubernetes</span>
+                            <span class="job-skill">Terraform</span>
+                            <span class="job-skill">PostgreSQL</span>
+                            <span class="job-skill">OpsGenie</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Lead DBA</div>
+                                <div class="job-company">Optum (UHG)</div>
+                            </div>
+                            <span class="job-date">Apr 2017 – Mar 2019</span>
+                        </div>
+                        <p class="job-desc">Improved infrastructure performance by 150% through advanced tuning and indexing strategies. Led HA clustering initiatives for critical patient data platforms. Managed mixed workloads across PostgreSQL, MongoDB, and Oracle in healthcare domain.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">PostgreSQL</span>
+                            <span class="job-skill">MongoDB</span>
+                            <span class="job-skill">Oracle</span>
+                            <span class="job-skill">HA Clustering</span>
+                            <span class="job-skill">Splunk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">PostgreSQL DBA</div>
+                                <div class="job-company">Aricent (Cisco Systems)</div>
+                            </div>
+                            <span class="job-date">Aug 2016 – Apr 2017</span>
+                        </div>
+                        <p class="job-desc">Managed PostgreSQL replication and HA setups for Cisco's Cloud EMaaS platform. Implemented pgPool-II for load balancing, pgAdmin for administration, and deployed database services using Docker for containerized environments.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">PostgreSQL</span>
+                            <span class="job-skill">Docker</span>
+                            <span class="job-skill">pgPool-II</span>
+                            <span class="job-skill">HA Setup</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Co-Founder Director</div>
+                                <div class="job-company">ThoughtBirds Technologies</div>
+                            </div>
+                            <span class="job-date">Nov 2013 – July 2016</span>
+                        </div>
+                        <p class="job-desc">Founded IT services startup managing full-stack delivery using Agile Scrum. Architected PostgreSQL and MySQL database servers, hands-on with Hadoop, Hive, Pig, and HBase for Big Data initiatives on AWS.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">PostgreSQL</span>
+                            <span class="job-skill">MySQL</span>
+                            <span class="job-skill">Hadoop</span>
+                            <span class="job-skill">AWS</span>
+                            <span class="job-skill">Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" style="background: var(--slate-50);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Detailed Project Experience</h2>
+                <p class="section-subtitle">Highlighted projects showcasing impact and technical depth</p>
+            </div>
+
+            <div class="projects-grid animate-in delay-1">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-cloud-database"></i></div>
+                    <h3 class="project-title">Multi-Cloud DB Reliability Platform</h3>
+                    <div class="project-company">Inspectorio</div>
+                    <p class="project-desc">Architected and operate a multi-cloud database platform managing 25+ production instances across PostgreSQL, AlloyDB, and ClickHouse, driving 90% latency improvements and 60%+ reduction in manual DBA toil through Python automation.</p>
+                    <div class="project-tech">PostgreSQL • AlloyDB • Kafka • ClickHouse • GCP • Terraform</div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-warehouse"></i></div>
+                    <h3 class="project-title">Carlyle DataOps Transformation</h3>
+                    <div class="project-company">Hexaware Technologies</div>
+                    <p class="project-desc">Led DataOps for Carlyle Group's private equity platform. Architected Snowflake & SnapLogic infrastructure on AWS using Terraform, implemented automated schema migrations with FlywayDB, and trained engineering teams on PostgreSQL best practices.</p>
+                    <div class="project-tech">Snowflake • SnapLogic • Terraform • Azure • FlywayDB</div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h3 class="project-title">Global Delivery Platform Migration</h3>
+                    <div class="project-company">Talabat - Delivery Hero</div>
+                    <p class="project-desc">Executed enterprise-scale migration from SQL Server to PostgreSQL on AWS, achieving 200% performance improvement. Architected CI/CD pipelines with FlywayDB, Kubernetes orchestration, and sub-2-hour DR restoration procedures.</p>
+                    <div class="project-tech">AWS Aurora • PostgreSQL • Kubernetes • Helm • Terraform</div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3 class="project-title">Healthcare HA Clusters & Resilience</h3>
+                    <div class="project-company">Optum (UHG)</div>
+                    <p class="project-desc">Designed and implemented High-Availability clustering for critical patient data platforms. Achieved 150% infrastructure performance improvement through advanced SQL optimization, indexing strategies, and cross-datacenter replication.</p>
+                    <div class="project-tech">PostgreSQL • MongoDB • Oracle • HA Clustering • Splunk</div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-plug"></i></div>
+                    <h3 class="project-title">Energy Management SaaS Platform</h3>
+                    <div class="project-company">Cisco Systems</div>
+                    <p class="project-desc">Managed PostgreSQL replication and HA architecture for Cisco's Cloud EMaaS platform. Implemented pgPool-II for intelligent load balancing, pgAdmin for centralized management, and containerized services using Docker.</p>
+                    <div class="project-tech">PostgreSQL • Docker • pgPool-II • pgAdmin • Nagios</div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="project-title">IT Services Startup Operations</h3>
+                    <div class="project-company">ThoughtBirds Technologies</div>
+                    <p class="project-desc">Founded and scaled IT services startup managing full-stack delivery with Agile Scrum. Architected database infrastructure, pioneered Big Data initiatives with Hadoop/Hive/HBase, and led AWS cloud platform adoption.</p>
+                    <div class="project-tech">PostgreSQL • MySQL • Hadoop • AWS • Agile/Scrum</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CERTIFICATIONS ========== -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certifications & Credentials</h2>
+                <p class="section-subtitle">Industry-recognized qualifications</p>
+            </div>
+
+            <div class="cert-grid animate-in delay-1">
+                <div class="cert-badge"><i class="fab fa-aws"></i> AWS Database Specialty</div>
+                <div class="cert-badge"><i class="fab fa-aws"></i> AWS Solutions Architect</div>
+                <div class="cert-badge"><i class="fas fa-dharmachakra"></i> CKA / CKAD (Kubernetes)</div>
+                <div class="cert-badge"><i class="fab fa-hashicorp"></i> Terraform Associate</div>
+                <div class="cert-badge"><i class="fas fa-database"></i> PostgreSQL 12 Certified</div>
+                <div class="cert-badge"><i class="fas fa-chart-line"></i> New Relic Full Stack</div>
+                <div class="cert-badge"><i class="fab fa-oracle"></i> OCI Foundations Associate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#about">About</a>
+                        <a href="#skills">Skills</a>
+                        <a href="#experience">Experience</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#certifications">Certifications</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="footer-links">
+                        <a href="mailto:sumeet.k.shukla@gmail.com">Email</a>
+                        <a href="tel:+917406121115">Phone: +91-740 612 1115</a>
+                        <a href="https://linkedin.com/in/sumeetshukla" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow</h4>
+                    <div class="social-icons">
+                        <a href="https://linkedin.com/in/sumeetshukla" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:sumeet.k.shukla@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sumeet K Shukla. Built with expertise in Cloud & Database Architecture. | <a href="#" style="color: var(--slate-300);">Privacy</a> | <a href="#" style="color: var(--slate-300);">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-in, section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
