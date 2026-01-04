@@ -9,7 +9,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -67,7 +69,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: var(--font-heading);
             color: var(--slate-900);
             line-height: 1.2;
@@ -360,58 +367,108 @@
         /* ============ SKILLS SECTION ============ */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
+        @media (max-width: 900px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .skill-box {
-            background: white;
-            padding: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 1.75rem;
             border-radius: var(--radius-lg);
             border: 1px solid var(--slate-200);
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .skill-box:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(15, 118, 110, 0.12);
+            transform: translateY(-4px);
         }
 
         .skill-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--slate-100);
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0;
+            border-bottom: none;
         }
 
         .skill-header i {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--primary);
+            flex-shrink: 0;
         }
 
         .skill-header h3 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--slate-900);
+            line-height: 1.3;
         }
 
         .skill-items {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 0.6rem;
         }
 
         .skill-tag {
-            background: var(--slate-100);
+            background: white;
             color: var(--slate-700);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
             font-weight: 500;
             transition: var(--transition);
             border: 1px solid var(--slate-200);
+            display: inline-block;
+            white-space: nowrap;
         }
 
         .skill-tag:hover {
-            background: var(--primary-light);
-            color: var(--primary-dark);
+            background: var(--primary);
+            color: white;
             border-color: var(--primary);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+        }
+
+        .skill-category {
+            margin-bottom: 1.25rem;
+        }
+
+        .skill-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-subtitle {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 0.65rem;
+            display: block;
         }
 
         /* ============ EXPERIENCE (TIMELINE) ============ */
@@ -582,33 +639,206 @@
 
         /* ============ CERTIFICATIONS ============ */
         .cert-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .cert-badge {
+        .cert-card {
             background: white;
-            border: 2px solid var(--slate-200);
-            padding: 0.75rem 1.5rem;
-            border-radius: 99px;
+            border: 1px solid var(--slate-200);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cert-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+
+        .cert-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            padding: 10px;
+        }
+
+        .cert-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--primary);
+        }
+
+        .cert-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-name {
+            font-weight: 700;
+            color: var(--slate-900);
+            line-height: 1.3;
+            margin-bottom: 0.25rem;
+        }
+
+        .cert-issuer {
+            font-size: 0.85rem;
+            color: var(--slate-500);
+        }
+
+        /* ============ EDUCATION ============ */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--slate-200);
+            transition: var(--transition);
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .education-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .education-content {
+            flex: 1;
+        }
+
+        .education-year {
+            font-size: 0.875rem;
+            color: var(--primary);
             font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            background: var(--slate-50);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            border: 1px solid var(--slate-200);
+        }
+
+        .education-degree {
+            font-size: 1.25rem;
+            color: var(--slate-800);
+            margin-bottom: 0.25rem;
+            font-weight: 700;
+        }
+
+        .education-school {
+            color: var(--slate-500);
+            font-size: 1rem;
+        }
+
+        /* ============ PUBLICATIONS ============ */
+        .publications-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .publication-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--slate-200);
+            transition: var(--transition);
+            text-decoration: none;
+            /* Ensure links don't have underline */
+            display: flex;
+            flex-direction: column;
+            /* Stack header and content vertically */
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            background: var(--slate-50);
+        }
+
+        .publication-header {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            transition: var(--transition);
+            width: 100%;
         }
 
-        .cert-badge:hover {
-            border-color: var(--primary);
+        .publication-icon {
+            font-size: 1.25rem;
+            color: var(--primary);
+            width: 32px;
+            height: 32px;
             background: var(--primary-light);
-            color: var(--primary-dark);
-            transform: scale(1.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .cert-badge i {
-            font-size: 1rem;
+        .publication-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--slate-500);
+            font-weight: 700;
+            margin-bottom: 0;
+            /* Remove margin as it is now in flex row */
+        }
+
+        .publication-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .publication-desc {
+            color: var(--slate-600);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex: 1;
         }
 
         /* ============ FOOTER ============ */
@@ -676,6 +906,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -687,9 +918,17 @@
             opacity: 0;
         }
 
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
@@ -728,7 +967,9 @@
 
         /* ============ PRINT ============ */
         @media print {
-            nav, footer {
+
+            nav,
+            footer {
                 display: none;
             }
 
@@ -751,10 +992,12 @@
             <div class="nav-logo">SK</div>
             <div class="nav-links">
                 <a href="#about">About</a>
+                <a href="#certifications">Certs</a>
                 <a href="#skills">Skills</a>
                 <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
-                <a href="#certifications">Certs</a>
+                <a href="#publications">Publications</a>
+                <a href="#education">Education</a>
                 <a href="mailto:sumeet.k.shukla@gmail.com" class="cta-button">
                     <i class="fas fa-paper-plane"></i> Contact
                 </a>
@@ -771,7 +1014,12 @@
                     <i class="fas fa-terminal"></i> Senior DBRE & Cloud Architect
                 </div>
                 <p class="hero-bio">
-                    <strong>15+ years architecting scale.</strong> Specializing in mission-critical <strong>PostgreSQL, AlloyDB, and NoSQL</strong> ecosystems on AWS & GCP. I build <strong>99.99% available platforms</strong> using Terraform, Kubernetes, and SRE principles. Expert in reducing toil, optimizing costs, and driving operational excellence.
+                    <strong>15+ years architecting scale.</strong> Specializing in mission-critical <strong>PostgreSQL
+                        platforms</strong>. Delivering <strong>99.95%+ availability</strong> and
+                    <strong>multi-million-dollar
+                        savings</strong> for global orgs. Expert in <strong>Cloud-Native Architecture (AWS, GCP),
+                        Terraform,
+                        and Kubernetes</strong>, transforming reactive ops into <strong>proactive excellence</strong>.
                 </p>
                 <div class="cta-btn-group">
                     <a href="mailto:sumeet.k.shukla@gmail.com" class="cta-button">
@@ -793,9 +1041,9 @@
         <div class="stats-grid animate-in delay-1">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-database"></i></div>
-                <span class="stat-number">25+</span>
+                <span class="stat-number">125+</span>
                 <div class="stat-label">Cloud Instances</div>
-                <div class="stat-desc">Managed across AWS, GCP & Azure</div>
+                <div class="stat-desc">Managed across AWS & GCP</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
@@ -827,11 +1075,175 @@
             </div>
             <div style="max-width: 900px; margin: 0 auto; text-align: center;">
                 <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: var(--slate-700);">
-                    I'm a <strong>Senior Database Reliability Engineer</strong> with deep expertise in designing and operating <strong>high-scale, mission-critical database systems</strong>. Throughout my 15+ year career, I've architected multi-cloud solutions, led infrastructure transformations, and driven operational excellence across AWS, GCP, and Azure.
+                    I'm a <strong>Senior Database Reliability Engineer & Cloud Architect</strong> with <strong>15+ years
+                        of expertise</strong> designing and operating <strong>mission-critical database systems at
+                        scale</strong>. Throughout my career, I've architected multi-cloud solutions for Fortune 500
+                    companies, led infrastructure transformations, and driven operational excellence across AWS, GCP,
+                    and Azure.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: var(--slate-700);">
+                    <strong>Technical Specialization:</strong> Deep expertise in PostgreSQL (15+ years), performance
+                    engineering achieving 90%+ optimization improvements, zero-downtime migrations, enterprise HA/DR
+                    strategies, and SRE principles. Experienced with AlloyDB, Snowflake, MySQL, MongoDB, and Oracle
+                    across diverse industries including healthcare, fintech, and logistics.
                 </p>
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--slate-700);">
-                    My passion lies in <strong>SRE principles</strong>, <strong>Infrastructure as Code</strong> with Terraform, and building <strong>observable, resilient systems</strong> that scale effortlessly. Whether optimizing query performance by 90%, reducing manual DBA work by 60%, or architecting disaster recovery with sub-2-hour RTOs, I thrive on solving complex technical challenges.
+                    <strong>Leadership & Impact:</strong> Built and mentored high-performing DBA/SRE teams. Reduced
+                    infrastructure costs by millions through optimization and automation. Achieved 99%+ platform
+                    availability across distributed cloud environments. Passionate about automation-first philosophies,
+                    Infrastructure as Code (Terraform), and building observable, resilient systems that scale
+                    effortlessly.
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CERTIFICATIONS ========== -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certifications & Credentials</h2>
+                <p class="section-subtitle">Industry-recognized qualifications</p>
+            </div>
+
+            <div class="cert-grid animate-in delay-1">
+                <!-- AWS -->
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fab fa-aws"></i></div>
+                    <div class="cert-info">
+                        <span class="cert-name">AWS Certified Database Specialty</span>
+                        <span class="cert-issuer">Amazon Web Services (2024)</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fab fa-aws"></i></div>
+                    <div class="cert-info">
+                        <span class="cert-name">AWS Solutions Architect</span>
+                        <span class="cert-issuer">Amazon Web Services (2019)</span>
+                    </div>
+                </div>
+
+                <!-- Kubernetes -->
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Kubernetes</title>
+                            <path
+                                d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.779zm1.5-3.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594l-9.261.003a1.6 1.6 0 0 1-1.247-.596l-5.776-7.18a1.583 1.583 0 0 1-.307-1.34L2.1 5.573c.108-.47.425-.864.863-1.073L11.305.513a1.606 1.606 0 0 1 1.385 0l8.345 3.985c.438.209.755.604.863 1.073l2.062 8.955c.108.47-.005.963-.308 1.34zm-3.289-2.057c-.042-.01-.103-.026-.145-.034-.174-.033-.315-.025-.479-.038-.35-.037-.638-.067-.895-.148-.105-.04-.18-.165-.216-.216l-.201-.059a6.45 6.45 0 0 0-.105-2.332 6.465 6.465 0 0 0-.936-2.163c.052-.047.15-.133.177-.159.008-.09.001-.183.094-.282.197-.185.444-.338.743-.522.142-.084.273-.137.415-.242.032-.024.076-.062.11-.089.24-.191.295-.52.123-.736-.172-.216-.506-.236-.745-.045-.034.027-.08.062-.111.088-.134.116-.217.23-.33.35-.246.25-.45.458-.673.609-.097.056-.239.037-.303.033l-.19.135a6.545 6.545 0 0 0-4.146-2.003l-.012-.223c-.065-.062-.143-.115-.163-.25-.022-.268.015-.557.057-.905.023-.163.061-.298.068-.475.001-.04-.001-.099-.001-.142 0-.306-.224-.555-.5-.555-.275 0-.499.249-.499.555l.001.014c0 .041-.002.092 0 .128.006.177.044.312.067.475.042.348.078.637.056.906a.545.545 0 0 1-.162.258l-.012.211a6.424 6.424 0 0 0-4.166 2.003 8.373 8.373 0 0 1-.18-.128c-.09.012-.18.04-.297-.029-.223-.15-.427-.358-.673-.608-.113-.12-.195-.234-.329-.349-.03-.026-.077-.062-.111-.088a.594.594 0 0 0-.348-.132.481.481 0 0 0-.398.176c-.172.216-.117.546.123.737l.007.005.104.083c.142.105.272.159.414.242.299.185.546.338.743.522.076.082.09.226.1.288l.16.143a6.462 6.462 0 0 0-1.02 4.506l-.208.06c-.055.072-.133.184-.215.217-.257.081-.546.11-.895.147-.164.014-.305.006-.48.039-.037.007-.09.02-.133.03l-.004.002-.007.002c-.295.071-.484.342-.423.608.061.267.349.429.645.365l.007-.001.01-.003.129-.029c.17-.046.294-.113.448-.172.33-.118.604-.217.87-.256.112-.009.23.069.288.101l.217-.037a6.5 6.5 0 0 0 2.88 3.596l-.09.218c.033.084.069.199.044.282-.097.252-.263.517-.452.813-.091.136-.185.242-.268.399-.02.037-.045.095-.064.134-.128.275-.034.591.213.71.248.12.556-.007.69-.282v-.002c.02-.039.046-.09.062-.127.07-.162.094-.301.144-.458.132-.332.205-.68.387-.897.05-.06.13-.082.215-.105l.113-.205a6.453 6.453 0 0 0 4.609.012l.106.192c.086.028.18.042.256.155.136.232.229.507.342.84.05.156.074.295.145.457.016.037.043.09.062.129.133.276.442.402.69.282.247-.118.341-.435.213-.71-.02-.039-.045-.096-.065-.134-.083-.156-.177-.261-.268-.398-.19-.296-.346-.541-.443-.793-.04-.13.007-.21.038-.294-.018-.022-.059-.144-.083-.202a6.499 6.499 0 0 0 2.88-3.622c.064.01.176.03.213.038.075-.05.144-.114.28-.104.266.039.54.138.87.256.154.06.277.128.448.173.036.01.088.019.13.028l.009.003.007.001c.297.064.584-.098.645-.365.06-.266-.128-.537-.423-.608zM16.4 9.701l-1.95 1.746v.005a.44.44 0 0 0 .173.757l.003.01 2.526.728a5.199 5.199 0 0 0-.108-1.674A5.208 5.208 0 0 0 16.4 9.7zm-4.013 5.325a.437.437 0 0 0-.404-.232.44.44 0 0 0-.372.233h-.002l-1.268 2.292a5.164 5.164 0 0 0 3.326.003l-1.27-2.296h-.01zm1.888-1.293a.44.44 0 0 0-.27.036.44.44 0 0 0-.214.572l-.003.004 1.01 2.438a5.15 5.15 0 0 0 2.081-2.615l-2.6-.44-.004.005z" />
+                        </svg>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-name">Certified Kubernetes Application Developer (CKAD)</span>
+                        <span class="cert-issuer">CNCF (2021)</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Kubernetes</title>
+                            <path
+                                d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.779zm1.5-3.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594l-9.261.003a1.6 1.6 0 0 1-1.247-.596l-5.776-7.18a1.583 1.583 0 0 1-.307-1.34L2.1 5.573c.108-.47.425-.864.863-1.073L11.305.513a1.606 1.606 0 0 1 1.385 0l8.345 3.985c.438.209.755.604.863 1.073l2.062 8.955c.108.47-.005.963-.308 1.34zm-3.289-2.057c-.042-.01-.103-.026-.145-.034-.174-.033-.315-.025-.479-.038-.35-.037-.638-.067-.895-.148-.105-.04-.18-.165-.216-.216l-.201-.059a6.45 6.45 0 0 0-.105-2.332 6.465 6.465 0 0 0-.936-2.163c.052-.047.15-.133.177-.159.008-.09.001-.183.094-.282.197-.185.444-.338.743-.522.142-.084.273-.137.415-.242.032-.024.076-.062.11-.089.24-.191.295-.52.123-.736-.172-.216-.506-.236-.745-.045-.034.027-.08.062-.111.088-.134.116-.217.23-.33.35-.246.25-.45.458-.673.609-.097.056-.239.037-.303.033l-.19.135a6.545 6.545 0 0 0-4.146-2.003l-.012-.223c-.065-.062-.143-.115-.163-.25-.022-.268.015-.557.057-.905.023-.163.061-.298.068-.475.001-.04-.001-.099-.001-.142 0-.306-.224-.555-.5-.555-.275 0-.499.249-.499.555l.001.014c0 .041-.002.092 0 .128.006.177.044.312.067.475.042.348.078.637.056.906a.545.545 0 0 1-.162.258l-.012.211a6.424 6.424 0 0 0-4.166 2.003 8.373 8.373 0 0 1-.18-.128c-.09.012-.18.04-.297-.029-.223-.15-.427-.358-.673-.608-.113-.12-.195-.234-.329-.349-.03-.026-.077-.062-.111-.088a.594.594 0 0 0-.348-.132.481.481 0 0 0-.398.176c-.172.216-.117.546.123.737l.007.005.104.083c.142.105.272.159.414.242.299.185.546.338.743.522.076.082.09.226.1.288l.16.143a6.462 6.462 0 0 0-1.02 4.506l-.208.06c-.055.072-.133.184-.215.217-.257.081-.546.11-.895.147-.164.014-.305.006-.48.039-.037.007-.09.02-.133.03l-.004.002-.007.002c-.295.071-.484.342-.423.608.061.267.349.429.645.365l.007-.001.01-.003.129-.029c.17-.046.294-.113.448-.172.33-.118.604-.217.87-.256.112-.009.23.069.288.101l.217-.037a6.5 6.5 0 0 0 2.88 3.596l-.09.218c.033.084.069.199.044.282-.097.252-.263.517-.452.813-.091.136-.185.242-.268.399-.02.037-.045.095-.064.134-.128.275-.034.591.213.71.248.12.556-.007.69-.282v-.002c.02-.039.046-.09.062-.127.07-.162.094-.301.144-.458.132-.332.205-.68.387-.897.05-.06.13-.082.215-.105l.113-.205a6.453 6.453 0 0 0 4.609.012l.106.192c.086.028.18.042.256.155.136.232.229.507.342.84.05.156.074.295.145.457.016.037.043.09.062.129.133.276.442.402.69.282.247-.118.341-.435.213-.71-.02-.039-.045-.096-.065-.134-.083-.156-.177-.261-.268-.398-.19-.296-.346-.541-.443-.793-.04-.13.007-.21.038-.294-.018-.022-.059-.144-.083-.202a6.499 6.499 0 0 0 2.88-3.622c.064.01.176.03.213.038.075-.05.144-.114.28-.104.266.039.54.138.87.256.154.06.277.128.448.173.036.01.088.019.13.028l.009.003.007.001c.297.064.584-.098.645-.365.06-.266-.128-.537-.423-.608zM16.4 9.701l-1.95 1.746v.005a.44.44 0 0 0 .173.757l.003.01 2.526.728a5.199 5.199 0 0 0-.108-1.674A5.208 5.208 0 0 0 16.4 9.7zm-4.013 5.325a.437.437 0 0 0-.404-.232.44.44 0 0 0-.372.233h-.002l-1.268 2.292a5.164 5.164 0 0 0 3.326.003l-1.27-2.296h-.01zm1.888-1.293a.44.44 0 0 0-.27.036.44.44 0 0 0-.214.572l-.003.004 1.01 2.438a5.15 5.15 0 0 0 2.081-2.615l-2.6-.44-.004.005z" />
+                        </svg>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-name">Certified Kubernetes Administrator (CKA)</span>
+                        <span class="cert-issuer">CNCF (2021)</span>
+                    </div>
+                </div>
+
+                <!-- PostgreSQL -->
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>EnterpriseDB</title>
+                            <path
+                                d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zM6.44 7.75c.072 0 .148.004.222.012l1.815.18a.384.384 0 0 1 .345.369v6.636c0 .186-.154.32-.345.301l-1.815-.18C5.47 14.95 4.5 13.918 4.5 12.762c0-.62.279-1.15.72-1.49-.441-.428-.72-1.011-.72-1.631 0-1.084.85-1.892 1.94-1.89zm11.12 0c1.09 0 1.94.807 1.94 1.89 0 .62-.278 1.204-.72 1.631.442.34.72.87.72 1.49 0 1.157-.967 2.19-2.16 2.307l-1.817.18c-.191.02-.345-.116-.345-.3V8.31c0-.185.154-.35.345-.369l1.817-.18c.074-.007.148-.011.22-.011zm-7.374 2H12c1.194 0 2.16.93 2.16 2.074v3.09c0 1.145-.972 2.086-2.166 2.086H10.18a.343.343 0 0 1-.34-.344v-.092c0-.34.187-.331.27-.34l.136-.011c1.216-.13 1.735-.404 1.754-.766h-1.82c-.202 0-.34-.195-.34-.388v-4.977c0-.184.154-.332.346-.332z" />
+                        </svg>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-name">EDB Certified Professional</span>
+                        <span class="cert-issuer">PostgreSQL 12 (2020)</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>EnterpriseDB</title>
+                            <path
+                                d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zM6.44 7.75c.072 0 .148.004.222.012l1.815.18a.384.384 0 0 1 .345.369v6.636c0 .186-.154.32-.345.301l-1.815-.18C5.47 14.95 4.5 13.918 4.5 12.762c0-.62.279-1.15.72-1.49-.441-.428-.72-1.011-.72-1.631 0-1.084.85-1.892 1.94-1.89zm11.12 0c1.09 0 1.94.807 1.94 1.89 0 .62-.278 1.204-.72 1.631.442.34.72.87.72 1.49 0 1.157-.967 2.19-2.16 2.307l-1.817.18c-.191.02-.345-.116-.345-.3V8.31c0-.185.154-.35.345-.369l1.817-.18c.074-.007.148-.011.22-.011zm-7.374 2H12c1.194 0 2.16.93 2.16 2.074v3.09c0 1.145-.972 2.086-2.166 2.086H10.18a.343.343 0 0 1-.34-.344v-.092c0-.34.187-.331.27-.34l.136-.011c1.216-.13 1.735-.404 1.754-.766h-1.82c-.202 0-.34-.195-.34-.388v-4.977c0-.184.154-.332.346-.332z" />
+                        </svg>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-name">EDB Certified Associate</span>
+                        <span class="cert-issuer">PostgreSQL 12 (2020)</span>
+                    </div>
+                </div>
+
+                <!-- Others -->
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Terraform</title>
+                            <path
+                                d="M1.44 0v7.575l6.561 3.79V3.787zm21.12 4.227l-6.561 3.791v7.574l6.56-3.787zM8.72 4.23v7.575l6.561 3.787V8.018zm0 8.405v7.575L15.28 24v-7.578z" />
+                        </svg>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-name">Terraform Associate</span>
+                        <span class="cert-issuer">HashiCorp (2023)</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>New Relic</title>
+                            <path
+                                d="M8.0015 14.3091v7.384L12.0008 24V12.0008L1.6078 5.9996v4.6167ZM12.0008 0 2.8232 5.2976 6.8209 7.606l5.1799-2.9893 6.3936 3.6913v7.384l-5.1783 2.9908v4.6167l9.176-5.2991V5.9996Z" />
+                        </svg>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-name">New Relic Certified Full Stack</span>
+                        <span class="cert-issuer">New Relic (2024)</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 32 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Oracle</title>
+                            <path d="M10 2a8 8 0 1 0 0 16h12a8 8 0 1 0 0-16H10z" />
+                        </svg>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-name">OCI Foundations Associate</span>
+                        <span class="cert-issuer">Oracle Cloud Infrastructure (2022)</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 32 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Oracle</title>
+                            <path d="M10 2a8 8 0 1 0 0 16h12a8 8 0 1 0 0-16H10z" />
+                        </svg>
+                    </div>
+                    <div class="cert-info">
+                        <span class="cert-name">Oracle Certified Associate</span>
+                        <span class="cert-issuer">Oracle (2011)</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-university" style="color: #b59451;"></i></div>
+                    <div class="cert-info">
+                        <span class="cert-name">Managing People</span>
+                        <span class="cert-issuer">University of London (2023)</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon"><i class="fas fa-list-check"></i></div>
+                    <div class="cert-info">
+                        <span class="cert-name">Scrum Fundamentals</span>
+                        <span class="cert-issuer">SCRUMstudy (2014)</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -841,89 +1253,125 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Technical Expertise</h2>
-                <p class="section-subtitle">Core competencies across databases, cloud, and DevOps</p>
+                <p class="section-subtitle">15+ years of expertise across databases, cloud infrastructure, and
+                    reliability engineering</p>
             </div>
 
             <div class="skills-grid animate-in delay-1">
-                <!-- Databases -->
+                <!-- Database Engineering & Operations (Merged with Tools) -->
                 <div class="skill-box">
                     <div class="skill-header">
                         <i class="fas fa-database"></i>
-                        <h3>Database Platforms</h3>
+                        <h3>Database Reliability & Engineering</h3>
                     </div>
-                    <div class="skill-items">
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">AlloyDB</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">AWS Aurora</span>
-                        <span class="skill-tag">Snowflake</span>
-                        <span class="skill-tag">Redshift</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Cassandra</span>
-                        <span class="skill-tag">Redis</span>
-                        <span class="skill-tag">ClickHouse</span>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Core Platforms</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">PostgreSQL (Primary)</span>
+                            <span class="skill-tag">AWS RDS & Aurora</span>
+                            <span class="skill-tag">GCP CloudSQL & AlloyDB</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Amazon Redshift</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Tools & Administration</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">Flyway</span>
+                            <span class="skill-tag">pgAdmin</span>
+                            <span class="skill-tag">pgBadger</span>
+                            <span class="skill-tag">pgRepack</span>
+                            <span class="skill-tag">pgPool-II</span>
+                            <span class="skill-tag">pgAudit</span>
+                            <span class="skill-tag">pgBench</span>
+                            <span class="skill-tag">PEM</span>
+                            <span class="skill-tag">dBeaver</span>
+                            <span class="skill-tag">Postgres FDW</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Engineering Expertise</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">Performance Tuning</span>
+                            <span class="skill-tag">Query Optimization</span>
+                            <span class="skill-tag">HA & DR Strategies</span>
+                            <span class="skill-tag">Replication & Scaling</span>
+                            <span class="skill-tag">Zero-Downtime Migrations</span>
+                            <span class="skill-tag">Capacity Planning</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Cloud & DevOps -->
+                <!-- Cloud Infrastructure & DevOps -->
                 <div class="skill-box">
                     <div class="skill-header">
                         <i class="fas fa-cloud"></i>
-                        <h3>Cloud & DevOps</h3>
+                        <h3>Cloud Infrastructure & DevOps</h3>
                     </div>
-                    <div class="skill-items">
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">GCP</span>
-                        <span class="skill-tag">Azure</span>
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Helm</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Ansible</span>
-                        <span class="skill-tag">GitHub Actions</span>
-                        <span class="skill-tag">CI/CD</span>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Cloud Platforms</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">AWS (EC2, S3, VPC, CloudWatch, IAM)</span>
+                            <span class="skill-tag">GCP</span>
+                            <span class="skill-tag">OCI</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Container & Orchestration</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Kustomize</span>
+                            <span class="skill-tag">Helm Charts</span>
+                            <span class="skill-tag">Docker</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Infrastructure & CI/CD</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">Infrastructure as Code (Terraform, Packer)</span>
+                            <span class="skill-tag">CI/CD (GitHub Actions, CircleCI)</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Development & Scripting</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Shell Scripting</span>
+                            <span class="skill-tag">YAML</span>
+                            <span class="skill-tag">JSON</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">jQuery</span>
+                            <span class="skill-tag">PHP</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Monitoring & Observability</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">New Relic</span>
+                            <span class="skill-tag">Nagios</span>
+                            <span class="skill-tag">Datadog</span>
+                            <span class="skill-tag">Splunk</span>
+                            <span class="skill-tag">SolarWinds</span>
+                            <span class="skill-tag">Honeycomb</span>
+                            <span class="skill-tag">OpsGenie</span>
+                            <span class="skill-tag">Atlassian StatusPage</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-subtitle">Agile & Project Management</div>
+                        <div class="skill-items">
+                            <span class="skill-tag">Jira</span>
+                            <span class="skill-tag">Confluence</span>
+                            <span class="skill-tag">Scrum/Agile</span>
+                            <span class="skill-tag">Kanban</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Languages & Tools -->
-                <div class="skill-box">
-                    <div class="skill-header">
-                        <i class="fas fa-tools"></i>
-                        <h3>Languages & Tools</h3>
-                    </div>
-                    <div class="skill-items">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Bash/Shell</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Kafka</span>
-                        <span class="skill-tag">FlywayDB</span>
-                        <span class="skill-tag">pgAdmin</span>
-                        <span class="skill-tag">pgBadger</span>
-                        <span class="skill-tag">pgPool-II</span>
-                    </div>
-                </div>
 
-                <!-- Observability -->
-                <div class="skill-box">
-                    <div class="skill-header">
-                        <i class="fas fa-chart-bar"></i>
-                        <h3>Observability & Monitoring</h3>
-                    </div>
-                    <div class="skill-items">
-                        <span class="skill-tag">New Relic</span>
-                        <span class="skill-tag">Datadog</span>
-                        <span class="skill-tag">Splunk</span>
-                        <span class="skill-tag">Prometheus</span>
-                        <span class="skill-tag">Grafana</span>
-                        <span class="skill-tag">PagerDuty</span>
-                        <span class="skill-tag">OpsGenie</span>
-                        <span class="skill-tag">Nagios</span>
-                        <span class="skill-tag">ELK Stack</span>
-                        <span class="skill-tag">InfluxDB</span>
-                    </div>
-                </div>
+
+
             </div>
         </div>
     </section>
@@ -948,7 +1396,11 @@
                             </div>
                             <span class="job-date">Mar 2025 – Present</span>
                         </div>
-                        <p class="job-desc">Own reliability, performance, and scalability of 25+ production DB instances. Delivered 90% latency improvements via SQL optimization, reduced manual DBA effort by 60%+ through automation, and improved MTTR by 35% with SLO-driven operations.</p>
+                        <p class="job-desc">Own GCP Cloud SQL & AlloyDB reliability across 25+ production PostgreSQL
+                            instances (>99.95% availability). Delivered 90% latency improvements via SQL optimization
+                            and query tuning. Reduced manual DBA effort by 60%+ through automation and platform
+                            engineering. Improved MTTR by 35% with SLO-driven operations and proactive monitoring.
+                            Enabled safe zero-downtime migrations and rapid product scaling.</p>
                         <div class="job-skills">
                             <span class="job-skill">PostgreSQL</span>
                             <span class="job-skill">AlloyDB</span>
@@ -971,7 +1423,11 @@
                             </div>
                             <span class="job-date">Feb 2024 – Mar 2025</span>
                         </div>
-                        <p class="job-desc">Led DataOps for Carlyle Group's private equity platform. Architected Snowflake & SnapLogic infrastructure on AWS using Terraform. Implemented automated schema migrations with FlywayDB and conducted comprehensive PostgreSQL training for engineering teams.</p>
+                        <p class="job-desc">Led enterprise database platform for Carlyle Group's private equity
+                            operations. Architected Snowflake & SnapLogic infrastructure on AWS using Terraform with
+                            zero critical outages during vendor transitions. Built and mentored DBA/DBRE teams on best
+                            practices. Established Terraform-driven IaC, governance standards, SLAs, and runbooks for
+                            enterprise compliance.</p>
                         <div class="job-skills">
                             <span class="job-skill">Snowflake</span>
                             <span class="job-skill">FlywayDB</span>
@@ -993,7 +1449,12 @@
                             </div>
                             <span class="job-date">Mar 2019 – Feb 2022</span>
                         </div>
-                        <p class="job-desc">Migrated SQL Server to PostgreSQL on AWS (achieving 200% performance boost). Managed massive RDS fleets using Terraform, ensured DR restoration in <2 hours, and implemented CI/CD pipelines with FlywayDB and automated recovery strategies.</p>
+                        <p class="job-desc">Owned AWS RDS & Aurora platforms at scale for global delivery operations.
+                            Executed enterprise-scale migration from SQL Server to PostgreSQL on AWS, achieving 200%
+                            performance improvement. Architected Terraform-based IaC for standardized RDS provisioning
+                            and management. Designed HA/DR with sub-2-hour RTO and implemented Kubernetes-aware
+                            operational models. Led capacity planning and governance for high-traffic workloads with
+                            99.99% uptime.</p>
                         <div class="job-skills">
                             <span class="job-skill">AWS Aurora</span>
                             <span class="job-skill">Kubernetes</span>
@@ -1015,7 +1476,11 @@
                             </div>
                             <span class="job-date">Apr 2017 – Mar 2019</span>
                         </div>
-                        <p class="job-desc">Improved infrastructure performance by 150% through advanced tuning and indexing strategies. Led HA clustering initiatives for critical patient data platforms. Managed mixed workloads across PostgreSQL, MongoDB, and Oracle in healthcare domain.</p>
+                        <p class="job-desc">Led enterprise PostgreSQL (150% improvement) and MySQL (~70% improvement)
+                            platforms supporting mission-critical healthcare systems. Designed and implemented
+                            High-Availability clustering for critical patient data platforms. Owned end-to-end database
+                            lifecycle operations including security, backup, compliance, and automation. Built and
+                            mentored DBA teams on best practices.</p>
                         <div class="job-skills">
                             <span class="job-skill">PostgreSQL</span>
                             <span class="job-skill">MongoDB</span>
@@ -1037,7 +1502,11 @@
                             </div>
                             <span class="job-date">Aug 2016 – Apr 2017</span>
                         </div>
-                        <p class="job-desc">Managed PostgreSQL replication and HA setups for Cisco's Cloud EMaaS platform. Implemented pgPool-II for load balancing, pgAdmin for administration, and deployed database services using Docker for containerized environments.</p>
+                        <p class="job-desc">Administered PostgreSQL for Cisco's cloud EMaaS platform with focus on
+                            reliability and scalability. Implemented and tuned HA/DR architecture, automated failover
+                            mechanisms, and comprehensive monitoring (Nagios, pgBadger, pgAdmin, pgPool-II). Optimized
+                            server parameters for high-traffic production workloads and conducted proactive health
+                            checks.</p>
                         <div class="job-skills">
                             <span class="job-skill">PostgreSQL</span>
                             <span class="job-skill">Docker</span>
@@ -1058,13 +1527,85 @@
                             </div>
                             <span class="job-date">Nov 2013 – July 2016</span>
                         </div>
-                        <p class="job-desc">Founded IT services startup managing full-stack delivery using Agile Scrum. Architected PostgreSQL and MySQL database servers, hands-on with Hadoop, Hive, Pig, and HBase for Big Data initiatives on AWS.</p>
+                        <p class="job-desc">Founded and scaled IT services startup managing full-stack delivery with
+                            Agile Scrum methodology. Led team of 4 engineers; delivered PostgreSQL and MySQL platform
+                            architecture. Pioneered Big Data initiatives with Hadoop, Hive, HBase, and Sqoop. Optimized
+                            WordPress & Magento platforms, reducing DB overhead by 40%+.</p>
                         <div class="job-skills">
                             <span class="job-skill">PostgreSQL</span>
                             <span class="job-skill">MySQL</span>
                             <span class="job-skill">Hadoop</span>
                             <span class="job-skill">AWS</span>
                             <span class="job-skill">Leadership</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 7 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Principal PostgreSQL DBRE (Consulting)</div>
+                                <div class="job-company">Independent Consulting</div>
+                            </div>
+                            <span class="job-date">Mar 2022 – Feb 2024</span>
+                        </div>
+                        <p class="job-desc">Provided strategic PostgreSQL platform architecture and migration consulting
+                            to enterprise clients. Delivered performance engineering and comprehensive automation across
+                            multiple production environments, achieving 90%+ optimization improvements.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">PostgreSQL</span>
+                            <span class="job-skill">Architecture</span>
+                            <span class="job-skill">Migrations</span>
+                            <span class="job-skill">Performance Engineering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 8 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Associate Engineer (Databases)</div>
+                                <div class="job-company">Xento Systems Pvt. Ltd</div>
+                            </div>
+                            <span class="job-date">Oct 2012 – Oct 2013</span>
+                        </div>
+                        <p class="job-desc">Supported production PostgreSQL platforms with focus on query optimization
+                            and performance tuning. Managed backup and recovery operations, ensuring 99.9% data
+                            availability. Identified and resolved critical query bottlenecks in OLTP systems.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">PostgreSQL</span>
+                            <span class="job-skill">Query Tuning</span>
+                            <span class="job-skill">Backup & Recovery</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 9 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Assistant Systems Engineer</div>
+                                <div class="job-company">Tata Consultancy Services (TCS)</div>
+                            </div>
+                            <span class="job-date">Jul 2007 – Feb 2010</span>
+                        </div>
+                        <p class="job-desc">Managed enterprise BI, analytics, and financial reporting operations using
+                            Oracle and Business Objects. Optimized batch workflows (PFADAV, FMR), reducing end-to-end
+                            processing time by 50%. Improved SLA adherence and reporting accuracy for mission-critical
+                            financial systems.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">Oracle</span>
+                            <span class="job-skill">Business Objects</span>
+                            <span class="job-skill">BI/Analytics</span>
+                            <span class="job-skill">SQL</span>
                         </div>
                     </div>
                 </div>
@@ -1083,10 +1624,12 @@
             <div class="projects-grid animate-in delay-1">
                 <!-- Project 1 -->
                 <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-cloud-database"></i></div>
+                    <div class="project-icon"><i class="fas fa-network-wired"></i></div>
                     <h3 class="project-title">Multi-Cloud DB Reliability Platform</h3>
                     <div class="project-company">Inspectorio</div>
-                    <p class="project-desc">Architected and operate a multi-cloud database platform managing 25+ production instances across PostgreSQL, AlloyDB, and ClickHouse, driving 90% latency improvements and 60%+ reduction in manual DBA toil through Python automation.</p>
+                    <p class="project-desc">Architected and operate a multi-cloud database platform managing 25+
+                        production instances across PostgreSQL, AlloyDB, and ClickHouse, driving 90% latency
+                        improvements and 60%+ reduction in manual DBA toil through Python automation.</p>
                     <div class="project-tech">PostgreSQL • AlloyDB • Kafka • ClickHouse • GCP • Terraform</div>
                 </div>
 
@@ -1095,7 +1638,9 @@
                     <div class="project-icon"><i class="fas fa-warehouse"></i></div>
                     <h3 class="project-title">Carlyle DataOps Transformation</h3>
                     <div class="project-company">Hexaware Technologies</div>
-                    <p class="project-desc">Led DataOps for Carlyle Group's private equity platform. Architected Snowflake & SnapLogic infrastructure on AWS using Terraform, implemented automated schema migrations with FlywayDB, and trained engineering teams on PostgreSQL best practices.</p>
+                    <p class="project-desc">Led DataOps for Carlyle Group's private equity platform. Architected
+                        Snowflake & SnapLogic infrastructure on AWS using Terraform, implemented automated schema
+                        migrations with FlywayDB, and trained engineering teams on PostgreSQL best practices.</p>
                     <div class="project-tech">Snowflake • SnapLogic • Terraform • Azure • FlywayDB</div>
                 </div>
 
@@ -1104,7 +1649,9 @@
                     <div class="project-icon"><i class="fas fa-exchange-alt"></i></div>
                     <h3 class="project-title">Global Delivery Platform Migration</h3>
                     <div class="project-company">Talabat - Delivery Hero</div>
-                    <p class="project-desc">Executed enterprise-scale migration from SQL Server to PostgreSQL on AWS, achieving 200% performance improvement. Architected CI/CD pipelines with FlywayDB, Kubernetes orchestration, and sub-2-hour DR restoration procedures.</p>
+                    <p class="project-desc">Executed enterprise-scale migration from SQL Server to PostgreSQL on AWS,
+                        achieving 200% performance improvement. Architected CI/CD pipelines with FlywayDB, Kubernetes
+                        orchestration, and sub-2-hour DR restoration procedures.</p>
                     <div class="project-tech">AWS Aurora • PostgreSQL • Kubernetes • Helm • Terraform</div>
                 </div>
 
@@ -1113,7 +1660,9 @@
                     <div class="project-icon"><i class="fas fa-heartbeat"></i></div>
                     <h3 class="project-title">Healthcare HA Clusters & Resilience</h3>
                     <div class="project-company">Optum (UHG)</div>
-                    <p class="project-desc">Designed and implemented High-Availability clustering for critical patient data platforms. Achieved 150% infrastructure performance improvement through advanced SQL optimization, indexing strategies, and cross-datacenter replication.</p>
+                    <p class="project-desc">Designed and implemented High-Availability clustering for critical patient
+                        data platforms. Achieved 150% infrastructure performance improvement through advanced SQL
+                        optimization, indexing strategies, and cross-datacenter replication.</p>
                     <div class="project-tech">PostgreSQL • MongoDB • Oracle • HA Clustering • Splunk</div>
                 </div>
 
@@ -1122,7 +1671,9 @@
                     <div class="project-icon"><i class="fas fa-plug"></i></div>
                     <h3 class="project-title">Energy Management SaaS Platform</h3>
                     <div class="project-company">Cisco Systems</div>
-                    <p class="project-desc">Managed PostgreSQL replication and HA architecture for Cisco's Cloud EMaaS platform. Implemented pgPool-II for intelligent load balancing, pgAdmin for centralized management, and containerized services using Docker.</p>
+                    <p class="project-desc">Managed PostgreSQL replication and HA architecture for Cisco's Cloud EMaaS
+                        platform. Implemented pgPool-II for intelligent load balancing, pgAdmin for centralized
+                        management, and containerized services using Docker.</p>
                     <div class="project-tech">PostgreSQL • Docker • pgPool-II • pgAdmin • Nagios</div>
                 </div>
 
@@ -1131,29 +1682,158 @@
                     <div class="project-icon"><i class="fas fa-rocket"></i></div>
                     <h3 class="project-title">IT Services Startup Operations</h3>
                     <div class="project-company">ThoughtBirds Technologies</div>
-                    <p class="project-desc">Founded and scaled IT services startup managing full-stack delivery with Agile Scrum. Architected database infrastructure, pioneered Big Data initiatives with Hadoop/Hive/HBase, and led AWS cloud platform adoption.</p>
+                    <p class="project-desc">Founded and scaled IT services startup managing full-stack delivery with
+                        Agile Scrum. Architected database infrastructure, pioneered Big Data initiatives with
+                        Hadoop/Hive/HBase, and led AWS cloud platform adoption.</p>
                     <div class="project-tech">PostgreSQL • MySQL • Hadoop • AWS • Agile/Scrum</div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-database"></i></div>
+                    <h3 class="project-title">PostgreSQL Consulting & Optimization</h3>
+                    <div class="project-company">Independent Consulting (2022-2024)</div>
+                    <p class="project-desc">Delivered enterprise-grade PostgreSQL platform architecture, zero-downtime
+                        migration consulting, and performance engineering across multiple high-scale production
+                        environments. Achieved 90%+ query optimization improvements and built automation-first
+                        infrastructure.</p>
+                    <div class="project-tech">PostgreSQL • Architecture • Migrations • Performance Tuning • Automation
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="project-title">Financial Reporting & Analytics Pipeline</h3>
+                    <div class="project-company">TCS (Tata Consultancy Services)</div>
+                    <p class="project-desc">Optimized enterprise BI and financial reporting workflows using Oracle and
+                        Business Objects. Reduced end-to-end batch processing time by 50% through SQL optimization and
+                        workflow redesign. Managed mission-critical daily, weekly, and monthly financial reports.</p>
+                    <div class="project-tech">Oracle • Business Objects • SQL • Financial Reporting • ETL</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CERTIFICATIONS ========== -->
-    <section id="certifications">
+    <!-- ========== PUBLICATIONS ========== -->
+    <section id="publications">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Certifications & Credentials</h2>
-                <p class="section-subtitle">Industry-recognized qualifications</p>
+                <h2 class="section-title">Publications & Contributions</h2>
+                <p class="section-subtitle">Technical articles, papers, and open-source contributions</p>
             </div>
 
-            <div class="cert-grid animate-in delay-1">
-                <div class="cert-badge"><i class="fab fa-aws"></i> AWS Database Specialty</div>
-                <div class="cert-badge"><i class="fab fa-aws"></i> AWS Solutions Architect</div>
-                <div class="cert-badge"><i class="fas fa-dharmachakra"></i> CKA / CKAD (Kubernetes)</div>
-                <div class="cert-badge"><i class="fab fa-hashicorp"></i> Terraform Associate</div>
-                <div class="cert-badge"><i class="fas fa-database"></i> PostgreSQL 12 Certified</div>
-                <div class="cert-badge"><i class="fas fa-chart-line"></i> New Relic Full Stack</div>
-                <div class="cert-badge"><i class="fab fa-oracle"></i> OCI Foundations Associate</div>
+            <div class="publications-list animate-in delay-1">
+                <a href="https://medium.com/talabat-tech/solving-aws-aurora-rds-load-balancing-problem-with-pgpool-ii-d54897c95176"
+                    target="_blank" class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-icon"><i class="fab fa-medium"></i></div>
+                        <div class="publication-type">Technical Article</div>
+                    </div>
+                    <div class="publication-title">AWS Aurora RDS Load Balancing with pgPool-II</div>
+                    <p class="publication-desc">Comprehensive guide on implementing intelligent load balancing for
+                        PostgreSQL on AWS Aurora using pgPool-II connection pooling.</p>
+                </a>
+
+                <a href="https://github.com/cloudposse/terraform-aws-rds-cluster/pull/67" target="_blank"
+                    class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-icon"><i class="fab fa-github"></i></div>
+                        <div class="publication-type">Open Source Contribution</div>
+                    </div>
+                    <div class="publication-title">Terraform AWS RDS Cluster Module</div>
+                    <p class="publication-desc">Contributed production-ready Terraform module for AWS RDS cluster
+                        provisioning with automated backup, monitoring, and failover configurations.</p>
+                </a>
+
+                <a href="https://www.linkedin.com/pulse/postgresql-architecture-sumeet-shukla-1/" target="_blank"
+                    class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-icon"><i class="fab fa-linkedin"></i></div>
+                        <div class="publication-type">Technical Deep Dive</div>
+                    </div>
+                    <div class="publication-title">PostgreSQL Architecture Deep Dive</div>
+                    <p class="publication-desc">In-depth exploration of PostgreSQL internals, query execution, buffer
+                        management, and optimization strategies for high-performance systems.</p>
+                </a>
+
+                <a href="https://medium.com/@sumeet.k.shukla/install-and-configure-pgbadger-for-postgresql-on-centos-2dfd01346896"
+                    target="_blank" class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-icon"><i class="fab fa-medium"></i></div>
+                        <div class="publication-type">Best Practices Guide</div>
+                    </div>
+                    <div class="publication-title">pgBadger for PostgreSQL on Linux</div>
+                    <p class="publication-desc">Complete guide to using pgBadger for PostgreSQL log analysis and
+                        performance troubleshooting on Linux systems.</p>
+                </a>
+
+                <a href="https://www.linkedin.com/pulse/normalization-oltp-vs-olap-striking-balance-sumeet-shukla-lwubc/"
+                    target="_blank" class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-icon"><i class="fab fa-linkedin"></i></div>
+                        <div class="publication-type">Database Design</div>
+                    </div>
+                    <div class="publication-title">Normalization in OLTP vs. OLAP</div>
+                    <p class="publication-desc">Analysis of database normalization strategies and schema design patterns
+                        for transactional and analytical workloads.</p>
+                </a>
+
+                <a href="https://www.linkedin.com/pulse/quiet-triumph-signs-youve-truly-solved-database-problem-sumeet-shukla-rnhoc/"
+                    target="_blank" class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-icon"><i class="fab fa-linkedin"></i></div>
+                        <div class="publication-type">Career Insights</div>
+                    </div>
+                    <div class="publication-title">Signs You've Truly Solved a Database Admin Problem</div>
+                    <p class="publication-desc">Reflective piece on problem-solving methodology, observability, and what
+                        constitutes a complete solution in database administration.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EDUCATION ========== -->
+    <section id="education" style="background: var(--slate-50);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education & Qualifications</h2>
+                <p class="section-subtitle">Academic background and continuous learning</p>
+            </div>
+
+            <div class="education-grid animate-in delay-1">
+                <div class="education-card">
+                    <div class="education-icon" style="background: rgba(0, 139, 139, 0.1); color: #008B8B;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <div class="education-year">2010–2013</div>
+                        <h3 class="education-degree">Master of Computer Applications (MCA)</h3>
+                        <p class="education-school">Pune University, Pune</p>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon" style="background: rgba(44, 62, 80, 0.1); color: #2c3e50;">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="education-content">
+                        <div class="education-year">2008–2010</div>
+                        <h3 class="education-degree">Bachelor of Computer Applications (BCA)</h3>
+                        <p class="education-school">Annamalai University, Chennai</p>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon" style="background: rgba(230, 126, 34, 0.1); color: #e67e22;">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="education-content">
+                        <div class="education-year">2004–2007</div>
+                        <h3 class="education-degree">Diploma in Electrical & Electronics Engineering</h3>
+                        <p class="education-school">Central Polytechnic College, Chennai</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1169,7 +1849,9 @@
                         <a href="#skills">Skills</a>
                         <a href="#experience">Experience</a>
                         <a href="#projects">Projects</a>
+                        <a href="#education">Education</a>
                         <a href="#certifications">Certifications</a>
+                        <a href="#publications">Publications</a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -1183,14 +1865,17 @@
                 <div class="footer-section">
                     <h4>Follow</h4>
                     <div class="social-icons">
-                        <a href="https://linkedin.com/in/sumeetshukla" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://linkedin.com/in/sumeetshukla" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
                         <a href="mailto:sumeet.k.shukla@gmail.com"><i class="fas fa-envelope"></i></a>
                         <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Sumeet K Shukla. Built with expertise in Cloud & Database Architecture. | <a href="#" style="color: var(--slate-300);">Privacy</a> | <a href="#" style="color: var(--slate-300);">Terms</a></p>
+                <p>&copy; 2025 Sumeet K Shukla. Built with expertise in Cloud & Database Architecture. | <a href="#"
+                        style="color: var(--slate-300);">Privacy</a> | <a href="#"
+                        style="color: var(--slate-300);">Terms</a></p>
             </div>
         </div>
     </footer>
