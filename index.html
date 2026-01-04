@@ -577,21 +577,69 @@
         }
 
         /* ============ PROJECTS GRID ============ */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        #projects .container {
+            max-width: 1200px;
+            padding: 0 2rem;
+            overflow: visible;
+        }
+
+        .projects-carousel-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 2rem 0;
+            /* No overflow:hidden here, so buttons can be visible */
+        }
+
+        .projects-carousel-viewport {
+            overflow: hidden;
+            /* Main clipping container for the track */
+            width: 100%;
+            border-radius: var(--radius-lg);
+        }
+
+        .projects-carousel-track {
+            display: flex;
+            flex-wrap: nowrap;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             gap: 2rem;
+            will-change: transform;
+        }
+
+        .project-slide {
+            flex: 0 0 calc((100% - 4rem) / 3);
+            /* 3 cards */
+            display: flex;
+            width: calc((100% - 4rem) / 3);
+        }
+
+        @media (max-width: 850px) {
+            .project-slide {
+                flex: 0 0 calc((100% - 2rem) / 2);
+                /* 2 cards */
+                width: calc((100% - 2rem) / 2);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .project-slide {
+                flex: 0 0 100%;
+                /* 1 card */
+                width: 100%;
+            }
         }
 
         .project-card {
+            width: 100%;
             background: white;
             border-radius: var(--radius-lg);
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border: 1px solid var(--slate-200);
             box-shadow: var(--shadow-sm);
             display: flex;
             flex-direction: column;
             transition: var(--transition);
+            height: 100%;
         }
 
         .project-card:hover {
@@ -603,38 +651,105 @@
         .project-icon {
             font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .project-title {
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            color: var(--slate-900);
         }
 
         .project-company {
             color: var(--primary);
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
         }
 
         .project-desc {
+            font-size: 0.95rem;
             color: var(--slate-600);
+            line-height: 1.6;
             margin-bottom: 1.5rem;
             flex-grow: 1;
-            line-height: 1.7;
         }
 
         .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--slate-100);
-            font-size: 0.75rem;
-            font-family: monospace;
+            font-size: 0.85rem;
             color: var(--slate-500);
+            font-weight: 500;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--slate-100);
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid var(--slate-200);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            /* Ensure high z-index */
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: -25px;
+        }
+
+        .carousel-btn.next {
+            right: -25px;
+        }
+
+        @media (max-width: 1300px) {
+            .carousel-btn.prev {
+                left: 0px;
+            }
+
+            .carousel-btn.next {
+                right: 0px;
+            }
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2.5rem;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--slate-300);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+            width: 24px;
+            border-radius: 5px;
         }
 
         /* ============ CERTIFICATIONS ============ */
@@ -1116,10 +1231,16 @@
                     </div>
                 </div>
                 <div class="cert-card">
-                    <div class="cert-icon"><i class="fab fa-aws"></i></div>
+                    <div class="cert-icon">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Kubernetes</title>
+                            <path
+                                d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.779zm1.5-3.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594l-9.261.003a1.6 1.6 0 0 1-1.247-.596l-5.776-7.18a1.583 1.583 0 0 1-.307-1.34L2.1 5.573c.108-.47.425-.864.863-1.073L11.305.513a1.606 1.606 0 0 1 1.385 0l8.345 3.985c.438.209.755.604.863 1.073l2.062 8.955c.108.47-.005.963-.308 1.34zm-3.289-2.057c-.042-.01-.103-.026-.145-.034-.174-.033-.315-.025-.479-.038-.35-.037-.638-.067-.895-.148-.105-.04-.18-.165-.216-.216l-.201-.059a6.45 6.45 0 0 0-.105-2.332 6.465 6.465 0 0 0-.936-2.163c.052-.047.15-.133.177-.159.008-.09.001-.183.094-.282.197-.185.444-.338.743-.522.142-.084.273-.137.415-.242.032-.024.076-.062.11-.089.24-.191.295-.52.123-.736-.172-.216-.506-.236-.745-.045-.034.027-.08.062-.111.088-.134.116-.217.23-.33.35-.246.25-.45.458-.673.609-.097.056-.239.037-.303.033l-.19.135a6.545 6.545 0 0 0-4.146-2.003l-.012-.223c-.065-.062-.143-.115-.163-.25-.022-.268.015-.557.057-.905.023-.163.061-.298.068-.475.001-.04-.001-.099-.001-.142 0-.306-.224-.555-.5-.555-.275 0-.499.249-.499.555l.001.014c0 .041-.002.092 0 .128.006.177.044.312.067.475.042.348.078.637.056.906a.545.545 0 0 1-.162.258l-.012.211a6.424 6.424 0 0 0-4.166 2.003 8.373 8.373 0 0 1-.18-.128c-.09.012-.18.04-.297-.029-.223-.15-.427-.358-.673-.608-.113-.12-.195-.234-.329-.349-.03-.026-.077-.062-.111-.088a.594.594 0 0 0-.348-.132.481.481 0 0 0-.398.176c-.172.216-.117.546.123.737l.007.005.104.083c.142.105.272.159.414.242.299.185.546.338.743.522.076.082.09.226.1.288l.16.143a6.462 6.462 0 0 0-1.02 4.506l-.208.06c-.055.072-.133.184-.215.217-.257.081-.546.11-.895.147-.164.014-.305.006-.48.039-.037.007-.09.02-.133.03l-.004.002-.007.002c-.295.071-.484.342-.423.608.061.267.349.429.645.365l.007-.001.01-.003.129-.029c.17-.046.294-.113.448-.172.33-.118.604-.217.87-.256.112-.009.23.069.288.101l.217-.037a6.5 6.5 0 0 0 2.88 3.596l-.09.218c.033.084.069.199.044.282-.097.252-.263.517-.452.813-.091.136-.185.242-.268.399-.02.037-.045.095-.064.134-.128.275-.034.591.213.71.248.12.556-.007.69-.282v-.002c.02-.039.046-.09.062-.127.07-.162.094-.301.144-.458.132-.332.205-.68.387-.897.05-.06.13-.082.215-.105l.113-.205a6.453 6.453 0 0 0 4.609.012l.106.192c.086.028.18.042.256.155.136.232.229.507.342.84.05.156.074.295.145.457.016.037.043.09.062.129.133.276.442.402.69.282.247-.118.341-.435.213-.71-.02-.039-.045-.096-.065-.134-.083-.156-.177-.261-.268-.398-.19-.296-.346-.541-.443-.793-.04-.13.007-.21.038-.294-.018-.022-.059-.144-.083-.202a6.499 6.499 0 0 0 2.88-3.622c.064.01.176.03.213.038.075-.05.144-.114.28-.104.266.039.54.138.87.256.154.06.277.128.448.173.036.01.088.019.13.028l.009.003.007.001c.297.064.584-.098.645-.365.06-.266-.128-.537-.423-.608zM16.4 9.701l-1.95 1.746v.005a.44.44 0 0 0 .173.757l.003.01 2.526.728a5.199 5.199 0 0 0-.108-1.674A5.208 5.208 0 0 0 16.4 9.7zm-4.013 5.325a.437.437 0 0 0-.404-.232.44.44 0 0 0-.372.233h-.002l-1.268 2.292a5.164 5.164 0 0 0 3.326.003l-1.27-2.296h-.01zm1.888-1.293a.44.44 0 0 0-.27.036.44.44 0 0 0-.214.572l-.003.004 1.01 2.438a5.15 5.15 0 0 0 2.081-2.615l-2.6-.44-.004.005z" />
+                        </svg>
+                    </div>
                     <div class="cert-info">
-                        <span class="cert-name">AWS Solutions Architect</span>
-                        <span class="cert-issuer">Amazon Web Services (2019)</span>
+                        <span class="cert-name">Certified Kubernetes Administrator (CKA)</span>
+                        <span class="cert-issuer">CNCF (2021)</span>
                     </div>
                 </div>
 
@@ -1133,21 +1254,17 @@
                         </svg>
                     </div>
                     <div class="cert-info">
-                        <span class="cert-name">Certified Kubernetes Application Developer (CKAD)</span>
+                        <span class="cert-name">Certified Kubernetes App Developer (CKAD)</span>
                         <span class="cert-issuer">CNCF (2021)</span>
                     </div>
                 </div>
+
+
                 <div class="cert-card">
-                    <div class="cert-icon">
-                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <title>Kubernetes</title>
-                            <path
-                                d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.779zm1.5-3.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594l-9.261.003a1.6 1.6 0 0 1-1.247-.596l-5.776-7.18a1.583 1.583 0 0 1-.307-1.34L2.1 5.573c.108-.47.425-.864.863-1.073L11.305.513a1.606 1.606 0 0 1 1.385 0l8.345 3.985c.438.209.755.604.863 1.073l2.062 8.955c.108.47-.005.963-.308 1.34zm-3.289-2.057c-.042-.01-.103-.026-.145-.034-.174-.033-.315-.025-.479-.038-.35-.037-.638-.067-.895-.148-.105-.04-.18-.165-.216-.216l-.201-.059a6.45 6.45 0 0 0-.105-2.332 6.465 6.465 0 0 0-.936-2.163c.052-.047.15-.133.177-.159.008-.09.001-.183.094-.282.197-.185.444-.338.743-.522.142-.084.273-.137.415-.242.032-.024.076-.062.11-.089.24-.191.295-.52.123-.736-.172-.216-.506-.236-.745-.045-.034.027-.08.062-.111.088-.134.116-.217.23-.33.35-.246.25-.45.458-.673.609-.097.056-.239.037-.303.033l-.19.135a6.545 6.545 0 0 0-4.146-2.003l-.012-.223c-.065-.062-.143-.115-.163-.25-.022-.268.015-.557.057-.905.023-.163.061-.298.068-.475.001-.04-.001-.099-.001-.142 0-.306-.224-.555-.5-.555-.275 0-.499.249-.499.555l.001.014c0 .041-.002.092 0 .128.006.177.044.312.067.475.042.348.078.637.056.906a.545.545 0 0 1-.162.258l-.012.211a6.424 6.424 0 0 0-4.166 2.003 8.373 8.373 0 0 1-.18-.128c-.09.012-.18.04-.297-.029-.223-.15-.427-.358-.673-.608-.113-.12-.195-.234-.329-.349-.03-.026-.077-.062-.111-.088a.594.594 0 0 0-.348-.132.481.481 0 0 0-.398.176c-.172.216-.117.546.123.737l.007.005.104.083c.142.105.272.159.414.242.299.185.546.338.743.522.076.082.09.226.1.288l.16.143a6.462 6.462 0 0 0-1.02 4.506l-.208.06c-.055.072-.133.184-.215.217-.257.081-.546.11-.895.147-.164.014-.305.006-.48.039-.037.007-.09.02-.133.03l-.004.002-.007.002c-.295.071-.484.342-.423.608.061.267.349.429.645.365l.007-.001.01-.003.129-.029c.17-.046.294-.113.448-.172.33-.118.604-.217.87-.256.112-.009.23.069.288.101l.217-.037a6.5 6.5 0 0 0 2.88 3.596l-.09.218c.033.084.069.199.044.282-.097.252-.263.517-.452.813-.091.136-.185.242-.268.399-.02.037-.045.095-.064.134-.128.275-.034.591.213.71.248.12.556-.007.69-.282v-.002c.02-.039.046-.09.062-.127.07-.162.094-.301.144-.458.132-.332.205-.68.387-.897.05-.06.13-.082.215-.105l.113-.205a6.453 6.453 0 0 0 4.609.012l.106.192c.086.028.18.042.256.155.136.232.229.507.342.84.05.156.074.295.145.457.016.037.043.09.062.129.133.276.442.402.69.282.247-.118.341-.435.213-.71-.02-.039-.045-.096-.065-.134-.083-.156-.177-.261-.268-.398-.19-.296-.346-.541-.443-.793-.04-.13.007-.21.038-.294-.018-.022-.059-.144-.083-.202a6.499 6.499 0 0 0 2.88-3.622c.064.01.176.03.213.038.075-.05.144-.114.28-.104.266.039.54.138.87.256.154.06.277.128.448.173.036.01.088.019.13.028l.009.003.007.001c.297.064.584-.098.645-.365.06-.266-.128-.537-.423-.608zM16.4 9.701l-1.95 1.746v.005a.44.44 0 0 0 .173.757l.003.01 2.526.728a5.199 5.199 0 0 0-.108-1.674A5.208 5.208 0 0 0 16.4 9.7zm-4.013 5.325a.437.437 0 0 0-.404-.232.44.44 0 0 0-.372.233h-.002l-1.268 2.292a5.164 5.164 0 0 0 3.326.003l-1.27-2.296h-.01zm1.888-1.293a.44.44 0 0 0-.27.036.44.44 0 0 0-.214.572l-.003.004 1.01 2.438a5.15 5.15 0 0 0 2.081-2.615l-2.6-.44-.004.005z" />
-                        </svg>
-                    </div>
+                    <div class="cert-icon"><i class="fab fa-aws"></i></div>
                     <div class="cert-info">
-                        <span class="cert-name">Certified Kubernetes Administrator (CKA)</span>
-                        <span class="cert-issuer">CNCF (2021)</span>
+                        <span class="cert-name">AWS Solutions Architect</span>
+                        <span class="cert-issuer">Amazon Web Services (2019)</span>
                     </div>
                 </div>
 
@@ -1209,7 +1326,7 @@
                 <div class="cert-card">
                     <div class="cert-icon">
                         <svg role="img" viewBox="0 0 32 24" xmlns="http://www.w3.org/2000/svg">
-                            <title>Oracle</title>
+                            <title>Oracle Cloud Infrastructure</title>
                             <path d="M10 2a8 8 0 1 0 0 16h12a8 8 0 1 0 0-16H10z" />
                         </svg>
                     </div>
@@ -1220,9 +1337,10 @@
                 </div>
                 <div class="cert-card">
                     <div class="cert-icon">
-                        <svg role="img" viewBox="0 0 32 24" xmlns="http://www.w3.org/2000/svg">
-                            <title>Oracle</title>
-                            <path d="M10 2a8 8 0 1 0 0 16h12a8 8 0 1 0 0-16H10z" />
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <title>Oracle Database</title>
+                            <path
+                                d="M12 2C7.03 2 3 3.79 3 6V18C3 20.21 7.03 22 12 22C16.97 22 21 20.21 21 18V6C21 3.79 16.97 2 12 2ZM12 4C15.84 4 19 5.34 19 6C19 6.66 15.84 8 12 8C8.16 8 5 6.66 5 6C5 5.34 8.16 4 12 4ZM12 20C8.16 20 5 18.66 5 18V15.75C6.73 17.13 9.22 18 12 18C14.78 18 17.27 17.13 19 15.75V18C19 18.66 15.84 20 12 20ZM12 16C8.16 16 5 14.66 5 14V11.75C6.73 13.13 9.22 14 12 14C14.78 14 17.27 13.13 19 11.75V14C19 14.66 15.84 16 12 16ZM12 12C8.16 12 5 10.66 5 10V7.75C6.73 9.13 9.22 10 12 10C14.78 10 17.27 9.13 19 7.75V10C19 10.66 15.84 12 12 12Z" />
                         </svg>
                     </div>
                     <div class="cert-info">
@@ -1444,6 +1562,29 @@
                     <div class="job-card">
                         <div class="job-header">
                             <div>
+                                <div class="job-title">Principal PostgreSQL DBRE (Consulting)</div>
+                                <div class="job-company">Independent Consulting</div>
+                            </div>
+                            <span class="job-date">Mar 2022 – Feb 2024</span>
+                        </div>
+                        <p class="job-desc">Provided strategic PostgreSQL platform architecture and migration consulting
+                            to enterprise clients. Delivered performance engineering and comprehensive automation across
+                            multiple production environments, achieving 90%+ optimization improvements.</p>
+                        <div class="job-skills">
+                            <span class="job-skill">PostgreSQL</span>
+                            <span class="job-skill">Architecture</span>
+                            <span class="job-skill">Migrations</span>
+                            <span class="job-skill">Performance Engineering</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
                                 <div class="job-title">Senior DBA / SRE</div>
                                 <div class="job-company">Talabat - Delivery Hero (Dubai)</div>
                             </div>
@@ -1465,7 +1606,7 @@
                     </div>
                 </div>
 
-                <!-- Role 4 -->
+                <!-- Role 5 -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="job-card">
@@ -1491,7 +1632,7 @@
                     </div>
                 </div>
 
-                <!-- Role 5 -->
+                <!-- Role 6 -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="job-card">
@@ -1516,7 +1657,7 @@
                     </div>
                 </div>
 
-                <!-- Role 6 -->
+                <!-- Role 7 -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="job-card">
@@ -1541,28 +1682,7 @@
                     </div>
                 </div>
 
-                <!-- Role 7 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="job-card">
-                        <div class="job-header">
-                            <div>
-                                <div class="job-title">Principal PostgreSQL DBRE (Consulting)</div>
-                                <div class="job-company">Independent Consulting</div>
-                            </div>
-                            <span class="job-date">Mar 2022 – Feb 2024</span>
-                        </div>
-                        <p class="job-desc">Provided strategic PostgreSQL platform architecture and migration consulting
-                            to enterprise clients. Delivered performance engineering and comprehensive automation across
-                            multiple production environments, achieving 90%+ optimization improvements.</p>
-                        <div class="job-skills">
-                            <span class="job-skill">PostgreSQL</span>
-                            <span class="job-skill">Architecture</span>
-                            <span class="job-skill">Migrations</span>
-                            <span class="job-skill">Performance Engineering</span>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Role 8 -->
                 <div class="timeline-item">
@@ -1621,96 +1741,148 @@
                 <p class="section-subtitle">Highlighted projects showcasing impact and technical depth</p>
             </div>
 
-            <div class="projects-grid animate-in delay-1">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-network-wired"></i></div>
-                    <h3 class="project-title">Multi-Cloud DB Reliability Platform</h3>
-                    <div class="project-company">Inspectorio</div>
-                    <p class="project-desc">Architected and operate a multi-cloud database platform managing 25+
-                        production instances across PostgreSQL, AlloyDB, and ClickHouse, driving 90% latency
-                        improvements and 60%+ reduction in manual DBA toil through Python automation.</p>
-                    <div class="project-tech">PostgreSQL • AlloyDB • Kafka • ClickHouse • GCP • Terraform</div>
-                </div>
+            <div class="projects-carousel-container animate-in delay-1">
+                <button class="carousel-btn prev" id="projPrev" aria-label="Previous Project"><i
+                        class="fas fa-chevron-left"></i></button>
+                <div class="projects-carousel-viewport">
+                    <div class="projects-carousel-track" id="projTrack">
+                        <!-- Project 1 -->
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-icon"><i class="fas fa-network-wired"></i></div>
+                                <h3 class="project-title">Multi-Cloud DB Reliability Platform</h3>
+                                <div class="project-company">Inspectorio</div>
+                                <p class="project-desc">Architected and operate a multi-cloud database platform managing
+                                    25+
+                                    production instances across PostgreSQL, AlloyDB, and ClickHouse, driving 90% latency
+                                    improvements and 60%+ reduction in manual DBA toil through Python automation.</p>
+                                <div class="project-tech">PostgreSQL • AlloyDB • Kafka • ClickHouse • GCP • Terraform
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-warehouse"></i></div>
-                    <h3 class="project-title">Carlyle DataOps Transformation</h3>
-                    <div class="project-company">Hexaware Technologies</div>
-                    <p class="project-desc">Led DataOps for Carlyle Group's private equity platform. Architected
-                        Snowflake & SnapLogic infrastructure on AWS using Terraform, implemented automated schema
-                        migrations with FlywayDB, and trained engineering teams on PostgreSQL best practices.</p>
-                    <div class="project-tech">Snowflake • SnapLogic • Terraform • Azure • FlywayDB</div>
-                </div>
+                        <!-- Project 2 -->
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-icon"><i class="fas fa-warehouse"></i></div>
+                                <h3 class="project-title">Carlyle DataOps Transformation</h3>
+                                <div class="project-company">Hexaware Technologies</div>
+                                <p class="project-desc">Led DataOps for Carlyle Group's private equity platform.
+                                    Architected
+                                    Snowflake & SnapLogic infrastructure on AWS using Terraform, implemented automated
+                                    schema
+                                    migrations with FlywayDB, and trained engineering teams on PostgreSQL best
+                                    practices.
+                                </p>
+                                <div class="project-tech">Snowflake • SnapLogic • Terraform • Azure • FlywayDB</div>
+                            </div>
+                        </div>
 
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-exchange-alt"></i></div>
-                    <h3 class="project-title">Global Delivery Platform Migration</h3>
-                    <div class="project-company">Talabat - Delivery Hero</div>
-                    <p class="project-desc">Executed enterprise-scale migration from SQL Server to PostgreSQL on AWS,
-                        achieving 200% performance improvement. Architected CI/CD pipelines with FlywayDB, Kubernetes
-                        orchestration, and sub-2-hour DR restoration procedures.</p>
-                    <div class="project-tech">AWS Aurora • PostgreSQL • Kubernetes • Helm • Terraform</div>
-                </div>
+                        <!-- Project 3 -->
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-icon"><i class="fas fa-exchange-alt"></i></div>
+                                <h3 class="project-title">Global Delivery Platform Migration</h3>
+                                <div class="project-company">Talabat - Delivery Hero</div>
+                                <p class="project-desc">Executed enterprise-scale migration from SQL Server to
+                                    PostgreSQL on
+                                    AWS,
+                                    achieving 200% performance improvement. Architected CI/CD pipelines with FlywayDB,
+                                    Kubernetes
+                                    orchestration, and sub-2-hour DR restoration procedures.</p>
+                                <div class="project-tech">AWS Aurora • PostgreSQL • Kubernetes • Helm • Terraform</div>
+                            </div>
+                        </div>
 
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-heartbeat"></i></div>
-                    <h3 class="project-title">Healthcare HA Clusters & Resilience</h3>
-                    <div class="project-company">Optum (UHG)</div>
-                    <p class="project-desc">Designed and implemented High-Availability clustering for critical patient
-                        data platforms. Achieved 150% infrastructure performance improvement through advanced SQL
-                        optimization, indexing strategies, and cross-datacenter replication.</p>
-                    <div class="project-tech">PostgreSQL • MongoDB • Oracle • HA Clustering • Splunk</div>
-                </div>
+                        <!-- Project 4 -->
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-icon"><i class="fas fa-heartbeat"></i></div>
+                                <h3 class="project-title">Healthcare HA Clusters & Resilience</h3>
+                                <div class="project-company">Optum (UHG)</div>
+                                <p class="project-desc">Designed and implemented High-Availability clustering for
+                                    critical
+                                    patient
+                                    data platforms. Achieved 150% infrastructure performance improvement through
+                                    advanced
+                                    SQL
+                                    optimization, indexing strategies, and cross-datacenter replication.</p>
+                                <div class="project-tech">PostgreSQL • MongoDB • Oracle • HA Clustering • Splunk</div>
+                            </div>
+                        </div>
 
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-plug"></i></div>
-                    <h3 class="project-title">Energy Management SaaS Platform</h3>
-                    <div class="project-company">Cisco Systems</div>
-                    <p class="project-desc">Managed PostgreSQL replication and HA architecture for Cisco's Cloud EMaaS
-                        platform. Implemented pgPool-II for intelligent load balancing, pgAdmin for centralized
-                        management, and containerized services using Docker.</p>
-                    <div class="project-tech">PostgreSQL • Docker • pgPool-II • pgAdmin • Nagios</div>
-                </div>
+                        <!-- Project 5 -->
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-icon"><i class="fas fa-plug"></i></div>
+                                <h3 class="project-title">Energy Management SaaS Platform</h3>
+                                <div class="project-company">Cisco Systems</div>
+                                <p class="project-desc">Managed PostgreSQL replication and HA architecture for Cisco's
+                                    Cloud
+                                    EMaaS
+                                    platform. Implemented pgPool-II for intelligent load balancing, pgAdmin for
+                                    centralized
+                                    management, and containerized services using Docker.</p>
+                                <div class="project-tech">PostgreSQL • Docker • pgPool-II • pgAdmin • Nagios</div>
+                            </div>
+                        </div>
 
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-rocket"></i></div>
-                    <h3 class="project-title">IT Services Startup Operations</h3>
-                    <div class="project-company">ThoughtBirds Technologies</div>
-                    <p class="project-desc">Founded and scaled IT services startup managing full-stack delivery with
-                        Agile Scrum. Architected database infrastructure, pioneered Big Data initiatives with
-                        Hadoop/Hive/HBase, and led AWS cloud platform adoption.</p>
-                    <div class="project-tech">PostgreSQL • MySQL • Hadoop • AWS • Agile/Scrum</div>
-                </div>
+                        <!-- Project 2 - ThoughtBirds (Project 6) -->
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-icon"><i class="fas fa-rocket"></i></div>
+                                <h3 class="project-title">IT Services Startup Operations</h3>
+                                <div class="project-company">ThoughtBirds Technologies</div>
+                                <p class="project-desc">Founded and scaled IT services startup managing full-stack
+                                    delivery
+                                    with
+                                    Agile Scrum. Architected database infrastructure, pioneered Big Data initiatives
+                                    with
+                                    Hadoop/Hive/HBase, and led AWS cloud platform adoption.</p>
+                                <div class="project-tech">PostgreSQL • MySQL • Hadoop • AWS • Agile/Scrum</div>
+                            </div>
+                        </div>
 
-                <!-- Project 7 -->
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-database"></i></div>
-                    <h3 class="project-title">PostgreSQL Consulting & Optimization</h3>
-                    <div class="project-company">Independent Consulting (2022-2024)</div>
-                    <p class="project-desc">Delivered enterprise-grade PostgreSQL platform architecture, zero-downtime
-                        migration consulting, and performance engineering across multiple high-scale production
-                        environments. Achieved 90%+ query optimization improvements and built automation-first
-                        infrastructure.</p>
-                    <div class="project-tech">PostgreSQL • Architecture • Migrations • Performance Tuning • Automation
+                        <!-- Project 7 -->
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-icon"><i class="fas fa-database"></i></div>
+                                <h3 class="project-title">PostgreSQL Consulting & Optimization</h3>
+                                <div class="project-company">Independent Consulting (2022-2024)</div>
+                                <p class="project-desc">Delivered enterprise-grade PostgreSQL platform architecture,
+                                    zero-downtime
+                                    migration consulting, and performance engineering across multiple high-scale
+                                    production
+                                    environments. Achieved 90%+ query optimization improvements and built
+                                    automation-first
+                                    infrastructure.</p>
+                                <div class="project-tech">PostgreSQL • Architecture • Migrations • Performance Tuning •
+                                    Automation
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 8 -->
+                        <div class="project-slide">
+                            <div class="project-card">
+                                <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+                                <h3 class="project-title">Financial Reporting & Analytics Pipeline</h3>
+                                <div class="project-company">TCS (Tata Consultancy Services)</div>
+                                <p class="project-desc">Optimized enterprise BI and financial reporting workflows using
+                                    Oracle and
+                                    Business Objects. Reduced end-to-end batch processing time by 50% through SQL
+                                    optimization and
+                                    workflow redesign. Managed mission-critical daily, weekly, and monthly financial
+                                    reports.</p>
+                                <div class="project-tech">Oracle • Business Objects • SQL • Financial Reporting • ETL
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Project 8 -->
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="project-title">Financial Reporting & Analytics Pipeline</h3>
-                    <div class="project-company">TCS (Tata Consultancy Services)</div>
-                    <p class="project-desc">Optimized enterprise BI and financial reporting workflows using Oracle and
-                        Business Objects. Reduced end-to-end batch processing time by 50% through SQL optimization and
-                        workflow redesign. Managed mission-critical daily, weekly, and monthly financial reports.</p>
-                    <div class="project-tech">Oracle • Business Objects • SQL • Financial Reporting • ETL</div>
-                </div>
+                <button class="carousel-btn next" id="projNext" aria-label="Next Project"><i
+                        class="fas fa-chevron-right"></i></button>
+                <div class="carousel-dots" id="projDots"></div>
             </div>
         </div>
     </section>
@@ -1920,6 +2092,93 @@
                 nav.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
             }
         });
+
+        // Projects Carousel Logic
+        const track = document.getElementById('projTrack');
+        if (track) {
+            const getSlides = () => Array.from(track.querySelectorAll('.project-slide'));
+            const nextButton = document.getElementById('projNext');
+            const prevButton = document.getElementById('projPrev');
+            const dotsNav = document.getElementById('projDots');
+
+            let currentIndex = 0;
+
+            const getVisibleSlides = () => {
+                if (window.innerWidth <= 600) return 1;
+                if (window.innerWidth < 851) return 2;
+                return 3;
+            };
+
+            const updateCarouselSetup = () => {
+                const slides = getSlides();
+                const visibleSlides = getVisibleSlides();
+                const totalDots = Math.max(0, slides.length - visibleSlides + 1);
+
+                dotsNav.innerHTML = '';
+                for (let i = 0; i < totalDots; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('carousel-dot');
+                    if (i === currentIndex) dot.classList.add('active');
+                    dot.addEventListener('click', () => moveToSlide(i));
+                    dotsNav.appendChild(dot);
+                }
+            };
+
+            const moveToSlide = (index) => {
+                const slides = getSlides();
+                if (slides.length === 0) return;
+
+                const slideWidth = slides[0].offsetWidth;
+                const gap = parseFloat(getComputedStyle(track).gap) || 32;
+
+                track.style.transform = `translateX(-${(slideWidth + gap) * index}px)`;
+                currentIndex = index;
+
+                const dots = Array.from(dotsNav.children);
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+
+                const visibleSlides = getVisibleSlides();
+                const maxIndex = Math.max(0, slides.length - visibleSlides);
+
+                prevButton.style.opacity = index === 0 ? '0.3' : '1';
+                prevButton.style.pointerEvents = index === 0 ? 'none' : 'auto';
+
+                nextButton.style.opacity = index >= maxIndex ? '0.3' : '1';
+                nextButton.style.pointerEvents = index >= maxIndex ? 'none' : 'auto';
+            };
+
+            nextButton.addEventListener('click', () => {
+                const slides = getSlides();
+                const visibleSlides = getVisibleSlides();
+                if (currentIndex < slides.length - visibleSlides) {
+                    moveToSlide(currentIndex + 1);
+                }
+            });
+
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    moveToSlide(currentIndex - 1);
+                }
+            });
+
+            // Handle initial load and window resize
+            window.addEventListener('load', () => {
+                updateCarouselSetup();
+                moveToSlide(0);
+            });
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    currentIndex = 0;
+                    updateCarouselSetup();
+                    moveToSlide(0);
+                }, 250);
+            });
+        }
     </script>
 
 </body>
